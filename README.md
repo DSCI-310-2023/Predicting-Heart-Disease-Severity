@@ -7,7 +7,7 @@
 
 **Adapted from analysis competed by Emerson, Crick, Allie, Janowcz, Ziva Subelji and Sam Thorne**
 
-Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [here](.analysis-permission)
+Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [here](PERMISSIONS/analysis-permission.jpeg)
 
 ## About
 ---
