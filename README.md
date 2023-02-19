@@ -61,4 +61,8 @@ Additionally, Jupyter version listed in [`environment.yml`](environment.yml)
 
 ## License Information
 
-CAN WHOEVER ADDED THE LICENSING INFORMATION ADD THIS AS WELL PLEASE!
+This project and it's assets are licensed under a [CC-BY license](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+
+All code of this project is licensed under the [MIT License](https://opensource.org/license/mit/).
+
+Complete license file can be found [here](LICENSE.md)
