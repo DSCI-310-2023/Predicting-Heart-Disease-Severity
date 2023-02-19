@@ -1,18 +1,18 @@
-# dsci-310-group-18
+### dsci-310-group-18
 
 # Evaluating accuracy of predetermined variables to predict severity of heart disease in patients.
 ---
 
 ### Authors: Daniel Lee, Eric Leung, Sam Thorne
 
-**Adapted from analysis competed by Emerson, Crick, Allie, Janowcz, Ziva Subelji and Sam Thorne**
+**Adapted from analysis competed by: Emerson, Crick, Allie, Janowcz, Ziva Subelji and Sam Thorne**
 
 Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [here](PERMISSIONS/analysis-permission.jpeg)
 
 ## About
 ---
 
-We built a kNN classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients. This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model could be treated as another tool in the medical field for determining proper diagnosies of patients although it should not be used to diagnose individuals directly. 
+We built a kNN classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients (0 being least severe and 4 being most severe). This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model should not be used to diagnose individuals directly but used as a tool to assess the possibility that the patient is or will experience heart disease. 
 
 The data we used to build our model comes from the processed versions of data for Cleveland, Hungary, Switzerland and VA Long Beach patient information from 1988. All these data sets can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
 
