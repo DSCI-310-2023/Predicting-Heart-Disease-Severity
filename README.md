@@ -36,7 +36,7 @@ A Docker container has been created to make this computation reproducible.
 ```
 docker run --rm -p 8888:8888 \
     -v /$(pwd):/opt/dsci-310-group-18 \
-    DOCKER INFORMATION HERE
+    leuneri/dsci-310-group-18:latest
     jupyter nbconvert --to notebook --execute dsci-310-group-18/analysis.ipynb
 ```
 
@@ -47,7 +47,7 @@ docker run --rm -p 8888:8888 \
 ```
 docker-compose up -d
 ```
-4. Copy the URL that will come up that looks something like `INSERT URL EXAMPLE HERE ONCE WE CAN RUN THIS!!!!!` into your web browser. This will open Jupyter Lab in the root directory of this analysis. 
+4. Copy the URL that will come up that looks something like `http://127.0.0.1:8888/lab/workspaces/auto-N/tree/analysis.ipynb` into your web browser. This will open Jupyter Lab in the root directory of this analysis. 
 5. Nagivate to `analysis.ipynb` in Jupyter lab and run the entire analysis. By navigating to `Kernel` and clicking `Restart Kernal and Run All Cells`. 
 6. Work within the container as you need and edit the analysis!
 
