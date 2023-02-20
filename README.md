@@ -36,7 +36,7 @@ A Docker container has been created to make this computation reproducible.
 ```
 docker run --rm -p 8888:8888 \
     -v /$(pwd):/home/joyvan/dsci-310-group-18 \
-    leuneri/dsci-310-group-18:latest
+    leuneri/dsci-310-group-18:latest \
     jupyter nbconvert --to notebook --execute dsci-310-group-18/analysis.ipynb
 ```
 
