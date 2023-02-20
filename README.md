@@ -57,9 +57,9 @@ docker run --rm -p 8888:8888 \
 
 ## Dependencies:
 ---
-R version 4.2.1. 
+R version 4.2.1 & Jupyterlab 3.6.1
 
-Additionally, Jupyter version listed in [`environment.yml`](environment.yml)
+Additionally, all R packages and versions are listed in [`environment.yml`](environment.yml)
 
 ## License Information
 
