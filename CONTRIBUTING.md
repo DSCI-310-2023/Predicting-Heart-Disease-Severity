@@ -7,7 +7,7 @@ please open up an issue via [dsci-310-group-18 GitHub Repository Issues](https:/
 If you'd like to contribute a feature or bug fix,
 you can fork our repo and submit a pull request.
 We will review pull requests within 7 days.
-All contributors must abide by our [code of conduct](https://github.com/Dokkaebi10/dsci-310-group-18).
+All contributors must abide by our [code of conduct](CODE_OF_CONDUCT.md).
 
 ## How Can You Contribute?
 
