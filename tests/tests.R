@@ -1,4 +1,6 @@
 library(testthat)
+source("../../R/selection_forward_function.R")
+source("../../R/majority_classifier_function.R")
 test_that("X-axis label is not the same!", {
           plot <- majority_classifier_vis_function(majority_classifier)
           expect_identical(plot$labels$x, 'Heart disease degree of severity')})
