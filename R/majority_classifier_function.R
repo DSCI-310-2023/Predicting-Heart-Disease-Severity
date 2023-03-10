@@ -1,4 +1,4 @@
-
+library(ggplot2)
 
 #' Converts dataset to a bar graph visualization
 #'    

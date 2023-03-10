@@ -1,3 +1,4 @@
+library(tidyverse)
 #' Forward selection step in model
 #'    
 #' @param data a dataset that is intented to be turned into a bar graph
