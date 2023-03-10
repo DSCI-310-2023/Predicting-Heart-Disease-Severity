@@ -34,4 +34,3 @@ testthat::expect_equal(join_csv(), read_csv('../data/processed/heart_data.csv'))
 testthat::expect_equal(ncol(join_csv()), 21)
 
 
-

@@ -2,6 +2,8 @@
 # 2023-03-10
 # DSCI310 group 18 project
 
+library(tidyverse)
+
 # this file contains a function that joins all the separate location csv
 # into one single csv used for the analysis.
 
@@ -23,10 +25,42 @@ join_csv <- function(hungary_csv = '../data/processed/wrangled_hungary.csv',
                      va_csv = '../data/processed/wrangled_va.csv', 
                      cleveland_csv = '../data/processed/wrangled_cleveland.csv', 
                      switzerland_csv = '../data/processed/wrangled_switzerland.csv'){
-  hungary_read <- read_csv(hungary_csv, show_col_types = FALSE)
-  va_read <- read_csv(va_csv, show_col_types = FALSE)
-  cleveland_read <- read_csv(cleveland_csv, show_col_types = FALSE)
-  switzerland_read <- read_csv(switzerland_csv, show_col_types = FALSE)
+  hungary_read <- read_csv(hungary_csv, show_col_types = FALSE) %>%
+    mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
+                         rest_ECG_f = as.factor(rest_ECG), 
+                         exercise_f = as.factor(exercise), major_vessels_f = as.factor(major_vessels), 
+                         thal_f = as.factor(thal), diagnosis_f = as.factor(diagnosis)) %>%
+                  mutate(sex = as.numeric(sex), chest_pain = as.numeric(chest_pain), fasting_bs = as.numeric(fasting_bs),
+                          rest_ECG = as.numeric(rest_ECG), max_heart_rate = as.numeric(max_heart_rate), cholestoral_mmHg = as.numeric(cholestoral_mmHg),
+                          exercise = as.numeric(exercise), major_vessels = as.numeric(major_vessels), 
+                          thal = as.numeric(thal), diagnosis = as.numeric(diagnosis), rest_bp = as.numeric(rest_bp))
+  va_read <- read_csv(va_csv, show_col_types = FALSE) %>%
+    mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
+           rest_ECG_f = as.factor(rest_ECG), 
+           exercise_f = as.factor(exercise), major_vessels_f = as.factor(major_vessels), 
+           thal_f = as.factor(thal), diagnosis_f = as.factor(diagnosis)) %>%
+    mutate(sex = as.numeric(sex), chest_pain = as.numeric(chest_pain), fasting_bs = as.numeric(fasting_bs),
+           rest_ECG = as.numeric(rest_ECG), max_heart_rate = as.numeric(max_heart_rate), cholestoral_mmHg = as.numeric(cholestoral_mmHg),
+           exercise = as.numeric(exercise), major_vessels = as.numeric(major_vessels), 
+           thal = as.numeric(thal), diagnosis = as.numeric(diagnosis), rest_bp = as.numeric(rest_bp))
+  cleveland_read <- read_csv(cleveland_csv, show_col_types = FALSE) %>%
+    mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
+           rest_ECG_f = as.factor(rest_ECG), 
+           exercise_f = as.factor(exercise), major_vessels_f = as.factor(major_vessels), 
+           thal_f = as.factor(thal), diagnosis_f = as.factor(diagnosis)) %>%
+    mutate(sex = as.numeric(sex), chest_pain = as.numeric(chest_pain), fasting_bs = as.numeric(fasting_bs),
+           rest_ECG = as.numeric(rest_ECG), max_heart_rate = as.numeric(max_heart_rate), cholestoral_mmHg = as.numeric(cholestoral_mmHg),
+           exercise = as.numeric(exercise), major_vessels = as.numeric(major_vessels), 
+           thal = as.numeric(thal), diagnosis = as.numeric(diagnosis), rest_bp = as.numeric(rest_bp))
+  switzerland_read <- read_csv(switzerland_csv, show_col_types = FALSE) %>%
+    mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
+           rest_ECG_f = as.factor(rest_ECG), 
+           exercise_f = as.factor(exercise), major_vessels_f = as.factor(major_vessels), 
+           thal_f = as.factor(thal), diagnosis_f = as.factor(diagnosis)) %>%
+    mutate(sex = as.numeric(sex), chest_pain = as.numeric(chest_pain), fasting_bs = as.numeric(fasting_bs),
+           rest_ECG = as.numeric(rest_ECG), max_heart_rate = as.numeric(max_heart_rate), cholestoral_mmHg = as.numeric(cholestoral_mmHg),
+           exercise = as.numeric(exercise), major_vessels = as.numeric(major_vessels), 
+           thal = as.numeric(thal), diagnosis = as.numeric(diagnosis), rest_bp = as.numeric(rest_bp))
   heart_data <- bind_rows(hungary_read, va_read, cleveland_read, switzerland_read) %>%
     slice(-157, -357, -557)
   write_csv(heart_data, '../data/processed/heart_data.csv')
