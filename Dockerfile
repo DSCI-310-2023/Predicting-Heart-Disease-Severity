@@ -1,7 +1,12 @@
-FROM debian:stable
+FROM jupyter/r-notebook:latest
 
-RUN apt-get update
+COPY environment.yml .
+RUN conda env create --file environment.yml
 
-RUN apt-get install r-base r-base-dev -y 
+RUN conda init bash
 
-RUN R -e "install.packages(c('tidyverse', 'repr', 'tidymodels', 'cowplot', 'ggplot2', 'caret', 'e1071'))"
+RUN echo "conda activate dsci310-group18" > ~/.bashrc
+
+USER root
+
+WORKDIR /home/joyvan/dsci-310-group-18
