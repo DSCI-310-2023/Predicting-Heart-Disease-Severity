@@ -36,7 +36,7 @@ url_hungarian <- "https://archive.ics.uci.edu/ml/machine-learning-databases/hear
 web_data <- function(place, url){
   col_names <- c('age', 'sex', 'chest_pain', 'rest_bp', 'cholestoral_mmHg', 'fasting_bs', 
                  'rest_ECG', 'max_heart_rate', 'exercise', 'ST_dep', 'slope', 'major_vessels', 'thal', 'diagnosis')
-  data <- read_csv(url, col_names = col_names) %>%
+  data <- read_csv(url, col_names = col_names, show_col_types = FALSE) %>%
     na_if('?') %>%
     mutate(place = place) %>%
     mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
@@ -50,13 +50,13 @@ web_data <- function(place, url){
     select(-ST_dep, -slope) %>%
     select(place, everything())
   if (place == 'switzerland'){
-    location = './data/processed/wrangled_switzerland.csv'
+    location = '../data/processed/wrangled_switzerland.csv'
   }else if(place =='va'){
-    location = './data/processed/wrangled_va.csv'
+    location = '../data/processed/wrangled_va.csv'
   }else if(place == 'cleveland'){
-    location = './data/processed/wrangled_cleveland.csv'
+    location = '../data/processed/wrangled_cleveland.csv'
   }else{
-    location = './data/processed/wrangled_hungary.csv'
+    location = '../data/processed/wrangled_hungary.csv'
   }
   write_csv(data, location)
 }
