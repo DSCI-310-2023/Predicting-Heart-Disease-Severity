@@ -39,14 +39,6 @@ web_data <- function(place, url){
   data <- read_csv(url, col_names = col_names, show_col_types = FALSE) %>%
     na_if('?') %>%
     mutate(place = place) %>%
-    mutate(sex_f = as.factor(sex), chest_pain_f = as.factor(chest_pain), fasting_bs_f = as.factor(fasting_bs),
-           rest_ECG_f = as.factor(rest_ECG), 
-           exercise_f = as.factor(exercise), major_vessels_f = as.factor(major_vessels), 
-           thal_f = as.factor(thal), diagnosis_f = as.factor(diagnosis)) %>%
-    mutate(sex = as.numeric(sex), chest_pain = as.numeric(chest_pain), fasting_bs = as.numeric(fasting_bs),
-           rest_ECG = as.numeric(rest_ECG), max_heart_rate = as.numeric(max_heart_rate), cholestoral_mmHg = as.numeric(cholestoral_mmHg),
-           exercise = as.numeric(exercise), major_vessels = as.numeric(major_vessels), 
-           thal = as.numeric(thal), diagnosis = as.numeric(diagnosis), rest_bp = as.numeric(rest_bp)) %>%
     select(-ST_dep, -slope) %>%
     select(place, everything())
   if (place == 'switzerland'){
