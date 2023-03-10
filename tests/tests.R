@@ -27,3 +27,11 @@ testthat:: expect_equal(nrow(web_data('hungary', url_hungarian)), 200)
 # making sure columns are of the correct type
 testthat::expect_equal(is.numeric(web_data('switzerland', url_switzerland)$age), TRUE)
 testthat::expect_equal(is.factor(web_data('va', url_va)$major_vessels_f), TRUE)
+
+source("../R/joining_data.R")
+# testing that the function creates something that matches the full written data.
+testthat::expect_equal(join_csv(), read_csv('../data/processed/heart_data.csv'))
+testthat::expect_equal(ncol(join_csv()), 21)
+
+
+
