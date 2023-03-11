@@ -4,6 +4,7 @@
 
 library(tidyverse)
 library(ggplot2)
+library(cowplot)
 
 # this script contains a function that builds 3 box plots
 # and displays them in a grid for initial visualizations
@@ -43,3 +44,4 @@ grid_boxplots <- function(heart_data){
   show(boxplots)
   ggsave("../figures/boxplot.png")
 }
+
