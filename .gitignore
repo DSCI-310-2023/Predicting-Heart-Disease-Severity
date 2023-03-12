@@ -67,3 +67,5 @@ Footer navigation
 # ignore ipynb_checkpoints
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+
+.virtual_documents
