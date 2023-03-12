@@ -51,7 +51,7 @@ test_that("Full heart data set does not have the right number of rows", {
 
 # source("../R/boxplots.R")
 boxplot <- grid_boxplots(read_csv('../data/processed/heart_data.csv'))
-expect_true("plot" %in% class(bp))
+expect_true("plot" %in% class(boxplot))
 
 source("../R/classification_model.R")
 # Test that there are 7 columns and 21 rows
