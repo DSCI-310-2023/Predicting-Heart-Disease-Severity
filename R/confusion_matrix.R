@@ -1,6 +1,5 @@
 library(caret)
 library(ggplot2)
-library(reshape2)
 #' Testing accuracy of model
 #' 
 #' @param data is the predicted data of our classifier
@@ -18,7 +17,7 @@ library(reshape2)
 #' 
 confusion_matrix <- function(data, hGraph, wGraph, textSize, yLab, xLab, titleLab) {
   confusion_matrix <- data %>%
-      conf_mat(truth = diagnosis_f, estimate = .pred_class)
+      confusionMatrix(truth = diagnosis_f, estimate = .pred_class)
   confusion_matrix
   
   options(repr.plot.height = hGraph, repr.plot.width = wGraph)
@@ -30,5 +29,4 @@ confusion_matrix <- function(data, hGraph, wGraph, textSize, yLab, xLab, titleLa
     scale_fill_gradient(low = '#cce3ff', high = '#177fff')
   confusion_vis
 }
-
 
