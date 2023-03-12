@@ -11,14 +11,14 @@ test_that("Y-axis label is not the same!", {
           plot <- majority_classifier_vis_function(majority_classifier)
           expect_identical(plot$labels$y, 'Percent of outcomes \n in training dataset')})
 
-# source("../R/selection_forward_function.R")
-# heart_data_subset <- read_csv('../data/modelling/forward_selection_subset.csv') %>%
-#     mutate(diagnosis_f = as.factor(diagnosis_f))
-# plot <- forwardSelection(heart_data_subset)
-# test_that("The number of variables is not the same!", {
-#           expect_equivalent(max(plot$size), 5)})
-# test_that("The results are not the same!", {
-#           expect_equal(min(plot$accuracy), 0.426789675597178, tolerance = 0.05)})
+source("../R/selection_forward_function.R")
+heart_data_subset <- read_csv('../data/modelling/forward_selection_subset.csv') %>%
+    mutate(diagnosis_f = as.factor(diagnosis_f))
+plot <- forwardSelection(heart_data_subset)
+test_that("The number of variables is not the same!", {
+          expect_equivalent(max(plot$size), 5)})
+test_that("The results are not the same!", {
+          expect_equal(min(plot$accuracy), 0.426789675597178, tolerance = 0.05)})
 
 source("../R/place_data.R")
 # test that there are the right number of columns
