@@ -39,27 +39,41 @@ test_that("Age is not numeric!", {
 
 source("../R/joining_data.R")
 # testing that the function creates something that matches the full written data.
-test_that("Full heart data set does not match!", {
-    full_data <- read_csv('../data/processed/heart_data.csv') %>%
+full_data <- read_csv('../data/processed/heart_data.csv') %>%
         mutate(sex_f = as.factor(sex_f), chest_pain_f = as.factor(chest_pain_f),
         fasting_bs_f = as.factor(fasting_bs_f), rest_ECG_f = as.factor(rest_ECG_f),
         exercise_f = as.factor(exercise_f), major_vessels_f = as.factor(major_vessels_f),
         thal_f = as.factor(thal_f), diagnosis_f = as.factor(diagnosis_f))
+test_that("Full heart data set does not match!", {
     expect_equivalent(join_csv(), full_data)})
 test_that("Full heart data set does not have the right number of rows", {
     expect_equal(ncol(join_csv()), 21)})
 
-source("../R/boxplots.R")
-boxplot <- grid_boxplots(read_csv('../data/processed/heart_data.csv'))
+# source("../R/boxplots.R")
+# boxplot <- grid_boxplots(read_csv('../data/processed/heart_data.csv'))
 
-# Test that there are 7 columns and 21 rows
 source("../R/classification_model.R")
-testthat::expect_equal(ncol(classifier(heart_data_results), 7))
-testthat::expect_equal(nrow(classifier(heart_data_results), 21))
+# Test that there are 7 columns and 21 rows
+heart_training <- read.csv('../data/modelling/training-split.csv') %>%
+    mutate(diagnosis_f = as.factor(diagnosis_f))
+test_that("Classifier data has different number of columns!", {
+    expect_equal(ncol(classifier(heart_training)), 7)})
+test_that("Classifier data has a different number of rows!", {
+    expect_equal(nrow(classifier(heart_training)), 21)})
+
+source("../R/model_visualization.R")
+accuracy_data <- read_csv('../data/modelling/heart_data_accuracies.csv')
+test_that("Y axis is not what we expected", {
+    expect_equivalent(knn_visualization(accuracy_data)$labels$y, "Accuracy Estimate")})
+test_that("X axis is not what we expected", {
+    expect_equivalent(knn_visualization(accuracy_data)$labels$x, "Neighbors")
+})
 
 # Test that the estimate of our classifier is correct
 source("../R/confusion_matrix.R")
-testthat::expect_equal(ncol(confusion_matrix(heart_data_predict)), 5)
-testthat::expect_equal(nrow(confusion_matrix(heart_data_predict)), 5)
-testthat::expect_equal(confusion_matrix(heart_data_predict)$y, "Prediction of diagnosis")
-testthat::expect_equal(confusion_matrix(heart_data_predict)$x, "Actual diagnosis")
+heart_data_predict <- read_csv('../data/modelling/predict_data.csv') %>%
+    mutate(diagnosis_f = as.factor(diagnosis_f), .pred_class = as.factor(.pred_class))
+test_that("Y axis of confusion matrix does not match", {
+    expect_equivalent(confusion_matrix(heart_data_predict)$labels$y, "Prediction of diagnosis")})
+test_that("X axis of confusion matrix does not match", {
+    expect_equivalent(confusion_matrix(heart_data_predict)$labels$x, "Actual diagnosis")})
