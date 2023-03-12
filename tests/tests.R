@@ -33,4 +33,14 @@ source("../R/joining_data.R")
 testthat::expect_equal(join_csv(), read_csv('../data/processed/heart_data.csv'))
 testthat::expect_equal(ncol(join_csv()), 21)
 
+# Test that there are 7 columns and 21 rows
+source("../R/classification_model.R")
+testthat::expect_equal(ncol(classifier(heart_data_results), 7))
+testthat::expect_equal(nrow(classifier(heart_data_results), 21))
 
+# Test that the estimate of our classifier is correct
+source("../R/confusion_matrix.R")
+testthat::expect_equal(ncol(confusion_matrix(heart_data_predict)), 5)
+testthat::expect_equal(nrow(confusion_matrix(heart_data_predict)), 5)
+testthat::expect_equal(confusion_matrix(heart_data_predict)$y, "Prediction of diagnosis")
+testthat::expect_equal(confusion_matrix(heart_data_predict)$x, "Actual diagnosis")
