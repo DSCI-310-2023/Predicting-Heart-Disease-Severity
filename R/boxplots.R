@@ -1,3 +1,7 @@
+# Sam Thorne
+# 2023-03-10 
+# DSCI310 group 18 project
+
 library(tidyverse)
 library(ggplot2)
 library(cowplot)

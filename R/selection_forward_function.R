@@ -1,3 +1,5 @@
+library(tidyverse)
+library(tidymodels)
 #' Forward selection step in model
 #'    
 #' @param data a dataset that is intented to be turned into a bar graph
@@ -11,6 +13,7 @@
 #' forwardSelection(diff_data_set1, seedVar = 2, folds = 10)
 forwardSelection <- function(data , seedVar = 1, folds=5){
     #create an empty tibble to store the results
+    names<-colnames(data%>% select(-diagnosis_f))
     accuracies <- tibble(size = integer(), 
                          model_string = character(), 
                          accuracy = numeric())
@@ -22,7 +25,7 @@ forwardSelection <- function(data , seedVar = 1, folds=5){
          set_mode("classification")
 
     # create a 5-fold cross-validation object
-    heart_vfold <- vfold_cv(heart_data_subset, v = 5, strata = diagnosis_f)
+    heart_vfold <- vfold_cv(data, v = 5, strata = diagnosis_f)
 
     # store the total number of predictors
     n_total <- length(names)
@@ -42,7 +45,7 @@ forwardSelection <- function(data , seedVar = 1, folds=5){
 
             # create a recipe from the model string
             heart_recipe <- recipe(as.formula(model_string), 
-                                    data = heart_data_subset) %>%
+                                    data = data) %>%
                                     #step_upsample(diagnosis_f, over_ratio = 1, skip = FALSE) %>%
                               step_scale(all_predictors()) %>%
                               step_center(all_predictors())
