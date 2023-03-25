@@ -313,7 +313,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-model">Classification Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model">Testing the Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
 </ul>
 
             </nav>
@@ -333,9 +333,9 @@ document.write(`
 </section>
 <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
-<p>Heart disease refers to a number of different cardiovascular conditions including coronary artery disease, arrhythmia, and heart failure. These diseases have become the leading causes of death in the United States, killing over 659,000 people and costing the government $363 billion each year. Heart disease is associated with a number of factors such as unhealthy blood pressure, cholesterol, and more (National Center for Chronic Disease Prevention and Health Promotion, 2022).</p>
+<p>Heart disease refers to a number of different cardiovascular conditions including coronary artery disease, arrhythmia, and heart failure. These diseases have become the leading causes of death in the United States, killing over 659,000 people and costing the government $363 billion each year. Heart disease is associated with a number of factors such as unhealthy blood pressure, cholesterol, and more <span id="id1">[<a class="reference internal" href="#id10" title="High blood pressure symptoms and causes. May 2021. URL: https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina."><em>High blood pressure symptoms and causes</em>, 2021</a>]</span>.</p>
 <p><strong>We are asking: are age (<code class="docutils literal notranslate"><span class="pre">age</span></code>), maximum heart rate (<code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>), and resting blood pressure (<code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>) good at predicting the severity of heart disease in a patient? Based on literature research, we predict that age, maximum heart rate, and resting blood pressure will contribute to the different degrees of heart disease (ranging from 0 being healthy to 4 being the most severe heart cases).</strong></p>
-<p>The data we will use comes from “processed.switzerland.data,” “processed.cleveland.data,” “processed.hungarian.data” and “processed.va.data” provided in the Heart Disease dataset (Dua &amp; Graff, 2019). It was collected from the clinical and noninvasive test results of 143 patients undergoing angiography at the University Hospitals in Zurich and Basel, 303 patients undergoing angiography at the Cleveland Clinic in Cleveland, Ohio, 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Bupadepest and 200 patients undergoing angiography at the Veterans Administration Medical Center in Long Beach, California (Detrano et al., 1989).</p>
+<p>The data we will use comes from “processed.switzerland.data,” “processed.cleveland.data,” “processed.hungarian.data” and “processed.va.data” provided in the Heart Disease dataset <span id="id2">[<a class="reference internal" href="#id12" title="Dheeru Dua and Casey Graff. (uci) machine learning repository. 2017. URL: http://archive.ics.uci.edu/ml.">Dua and Graff, 2017</a>]</span>. It was collected from the clinical and noninvasive test results of 143 patients undergoing angiography at the University Hospitals in Zurich and Basel, 303 patients undergoing angiography at the Cleveland Clinic in Cleveland, Ohio, 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Bupadepest and 200 patients undergoing angiography at the Veterans Administration Medical Center in Long Beach, California <span id="id3">[<a class="reference internal" href="#id11" title="Robert Detrano, Andras Janosi, Walter Steinbrunn, Matthias Pfisterer, Johann-Jakob Schmid, Sarbjit Sandhu, Kern H. Guppy, Stella Lee, and Victor Froelicher. International application of a new probability algorithm for the diagnosis of coronary artery disease. The American Journal of Cardiology, 64(5):304–-310, 1989. doi:10.1016/0002-9149(89)90524-9.">Detrano <em>et al.</em>, 1989</a>]</span>.</p>
 <p>Below are the packages we loaded to complete our data analysis:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -362,8 +362,8 @@ document.write(`
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">matches()</span>       masks <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Test passed</span> 😀
-<span class=" -Color -Color-Green">Test passed</span> 🥳
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Test passed</span> 🎊
+<span class=" -Color -Color-Green">Test passed</span> 🎉
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────── tidymodels 1.0.0 ──
@@ -386,7 +386,7 @@ document.write(`
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">rsample</span>::<span class=" -Color -Color-Green">matches()</span> masks <span class=" -Color -Color-Blue">dplyr</span>::matches(), <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">yardstick</span>::<span class=" -Color -Color-Green">spec()</span>  masks <span class=" -Color -Color-Blue">readr</span>::spec()
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">step()</span>    masks <span class=" -Color -Color-Blue">stats</span>::step()
-<span class=" -Color -Color-Blue">•</span> Learn how to get started at <span class=" -Color -Color-Green">https://www.tidymodels.org/start/</span>
+<span class=" -Color -Color-Blue">•</span> Dig deeper into tidy modeling with R at <span class=" -Color -Color-Green">https://www.tmwr.org</span>
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">414</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">6</span>
@@ -569,15 +569,15 @@ The following object is masked from ‘package:tidyr’:
 <p>To begin choosing which predictors to use for our classifier, we conducted literature research on columns in our data set to determine their relationship with heart disease. This literature research below helped us to build our initial research question and is later confirmed with the use of foward selection.</p>
 <section id="resting-blood-pressure">
 <h2>Resting Blood Pressure<a class="headerlink" href="#resting-blood-pressure" title="Permalink to this headline">#</a></h2>
-<p>High blood pressure has always been associated with heart attack and heart disease. High blood pressure can damage the arteries by forcing them to stay in a taut position. This decreases the vessels ability to flow blood around the body which can lead to heart disease (Centers for Disease Control and Prevention, n.d.). From this we found indications that higher blood pressure in individuals resulted in coronary heart disease (Gosmanova et al., 2016). According to this research we expect those with higher resting blood pressure to have more severe heart disease.</p>
+<p>High blood pressure has always been associated with heart attack and heart disease. High blood pressure can damage the arteries by forcing them to stay in a taut position. This decreases the vessels ability to flow blood around the body which can lead to heart disease <span id="id4">[<a class="reference internal" href="#id10" title="High blood pressure symptoms and causes. May 2021. URL: https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina."><em>High blood pressure symptoms and causes</em>, 2021</a>]</span>. From this we found indications that higher blood pressure in individuals resulted in coronary heart disease <span id="id5">[<a class="reference internal" href="#id13" title="Elvira O. Gosmanova, Margit K. Mikkelsen, Miklos Z. Molnar, Jun L. Lu, Lenar T. Yessayan, Kamyar Kalantar-Zadeh, and Csaba P. Kovesdy. Association of systolic blood pressure variability with mortality, coronary heart disease, stroke, and renal disease. Journal of the American College of Cardiology, 68(13):1375–1386, 2016. URL: https://www.sciencedirect.com/science/article/pii/S0735109716346071, doi:https://doi.org/10.1016/j.jacc.2016.06.054.">Gosmanova <em>et al.</em>, 2016</a>]</span>. According to this research we expect those with higher resting blood pressure to have more severe heart disease.</p>
 </section>
 <section id="age">
 <h2>Age<a class="headerlink" href="#age" title="Permalink to this headline">#</a></h2>
-<p>Aging can cause changes in the heart and blood vessels that may increase person’s risk of developing cardiovascular disease. Aging to one’s heart is asociated with a reduction in its function. Some of the age-associated changes in the heart might be (partially) reversed, by exercise or specific drugs, however, it remains unclear whether this results in any definite advantages for the individual (Roffe, 1998). According to this research we expect older individuals to obtain heart disease of higher severity.</p>
+<p>Aging can cause changes in the heart and blood vessels that may increase person’s risk of developing cardiovascular disease. Aging to one’s heart is asociated with a reduction in its function. Some of the age-associated changes in the heart might be (partially) reversed, by exercise or specific drugs, however, it remains unclear whether this results in any definite advantages for the individual <span id="id6">[<a class="reference internal" href="#id15" title="C Roffe. Ageing of the heart. Br J Biomed Sci, 55(2):136–148, June 1998.">Roffe, 1998</a>]</span>. According to this research we expect older individuals to obtain heart disease of higher severity.</p>
 </section>
 <section id="maximum-heart-rate-achieved">
 <h2>Maximum Heart Rate Achieved<a class="headerlink" href="#maximum-heart-rate-achieved" title="Permalink to this headline">#</a></h2>
-<p>A low maximum heart rate can be associated with an increased risk of cardiac disease. Older hearts have a harder time than younger hearts pumping blood throughout the body because the heart gets tired and weaker with age. This can cause a decrease in daily physcial movement because there the heart is not able to preform as it used to. It is suspected that with a lower rate of blood pumping through the heart, there is a greater chance of other factors decreasing heart health that lead to heart disease (Christou &amp; Seals, 2008). According to this research we expect max heart rate will decrease as severity of heart disease increases.</p>
+<p>A low maximum heart rate can be associated with an increased risk of cardiac disease. Older hearts have a harder time than younger hearts pumping blood throughout the body because the heart gets tired and weaker with age. This can cause a decrease in daily physcial movement because there the heart is not able to preform as it used to. It is suspected that with a lower rate of blood pumping through the heart, there is a greater chance of other factors decreasing heart health that lead to heart disease <span id="id7">[<a class="reference internal" href="#id9" title="Demetra D. Christou and Douglas R. Seals. Decreased maximal heart rate with aging is related to reduced β-adrenergic responsiveness but is largely explained by a reduction in intrinsic heart rate. Journal of Applied Physiology, 105(1):24–29, 2008. PMID: 18483165. URL: https://doi.org/10.1152/japplphysiol.90401.2008, arXiv:https://doi.org/10.1152/japplphysiol.90401.2008, doi:10.1152/japplphysiol.90401.2008.">Christou and Seals, 2008</a>]</span>. According to this research we expect max heart rate will decrease as severity of heart disease increases.</p>
 </section>
 </section>
 <section id="initial-visualizations-of-predictors">
@@ -962,16 +962,30 @@ will replace the existing scale.
 <p><strong>What future Questions could this lead to?</strong></p>
 <p>What further research needs to be done on the predictors (maximum heart rate, age and resting blood pressure) to see if they are actually good predictors of heart disease? How could heart disease be lessened in the future, or how can heart disease be prevented? Patients at what age and with what symptoms should be encouraged to take precautions and see a doctor?</p>
 </section>
-<section id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
-<p>Centers for Disease Control and Prevention. (n.d.) <em>About High Blood Pressure</em>. Retrieved March 27, 2022, from <a class="reference external" href="https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina">https://www.cdc.gov/bloodpressure/about.htm#:~:text=High blood pressure can damage your arteries by making them,Chest pain%2C also called angina</a></p>
-<p>Christou, D. D., &amp; Seals, D. R. (2008). Decreased maximal heart rate with aging is related to reduced β-adrenergic responsiveness but is largely explained by a reduction in intrinsic heart rate. Journal of Applied Physiology, 105(1), 24–29. <a class="reference external" href="https://doi.org/10.1152/japplphysiol.90401.2008">https://doi.org/10.1152/japplphysiol.90401.2008</a></p>
-<p>Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J.-J., Sandhu, S., Guppy, K. H., Lee, S., &amp; Froelicher, V. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. <em>The American Journal of Cardiology, 64</em>(5), 304-310. <a class="reference external" href="https://doi.org/10.1016/0002-9149(89)90524-9">https://doi.org/10.1016/0002-9149(89)90524-9</a></p>
-<p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a class="reference external" href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science. Heart Disease Data Set created by William Steinbrunn, M.D. from University Hospital, Zurich, Switzerland, Matthias Pfisterer, M.D. from University Hospital, Basel, Switzerland, Andras Janosi, M.D. from Hungarian Institute of Cardiology, Budapest, Hungary and Robert Detrano, M.D., Ph.D. from V.A. Medical Center, Long Beach and Cleveland Clinic Foundation.</p>
-<p>Gosmanova, E. O., Mikkelsen, M. K., Molnar, M. Z., Lu, J. L., Yessayan, L. T., Kalantar-Zadeh, K. &amp; Kovesdy, C. P. (2016). Association of systolic blood pressure variability with mortality, coronary heart disease, stroke, and renal disease. <em>Journal of the American College of Cardiology, 68</em>(13), 1375-1097. <a class="reference external" href="https://doi.org/10.1016/j.jacc.2016.06.054">https://doi.org/10.1016/j.jacc.2016.06.054</a>.</p>
-<p>Heart Disease Data Set. UCI Machine Learning Repository: Heart disease data set. (n.d.). Retrieved March 10, 2022, from <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">https://archive.ics.uci.edu/ml/datasets/Heart+Disease</a></p>
-<p>National Center for Chronic Disease Prevention and Health Promotion, Division for Heart Disease and Stroke Prevention. (2022, February 7). <em>Heart Disease Facts</em>. Retrieved March 5, 2022, from <a class="reference external" href="https://www.cdc.gov/heartdisease/facts.htm">https://www.cdc.gov/heartdisease/facts.htm</a></p>
-<p>Roffe, C. (1998). Ageing of the heart. <em>British Journal of Biomedical Science, 55</em>(2), 136-148. ISSN: 0967-4845.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References:<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<div class="docutils container" id="id8">
+<dl class="citation">
+<dt class="label" id="id10"><span class="brackets">dis21</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id4">2</a>)</span></dt>
+<dd><p>High blood pressure symptoms and causes. May 2021. URL: <a class="reference external" href="https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina">https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina</a>.</p>
+</dd>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id7">CS08</a></span></dt>
+<dd><p>Demetra D. Christou and Douglas R. Seals. Decreased maximal heart rate with aging is related to reduced β-adrenergic responsiveness but is largely explained by a reduction in intrinsic heart rate. <em>Journal of Applied Physiology</em>, 105(1):24–29, 2008. PMID: 18483165. URL: <a class="reference external" href="https://doi.org/10.1152/japplphysiol.90401.2008">https://doi.org/10.1152/japplphysiol.90401.2008</a>, <a class="reference external" href="https://arxiv.org/abs/https://doi.org/10.1152/japplphysiol.90401.2008">arXiv:https://doi.org/10.1152/japplphysiol.90401.2008</a>, <a class="reference external" href="https://doi.org/10.1152/japplphysiol.90401.2008">doi:10.1152/japplphysiol.90401.2008</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id3">DJS+89</a></span></dt>
+<dd><p>Robert Detrano, Andras Janosi, Walter Steinbrunn, Matthias Pfisterer, Johann-Jakob Schmid, Sarbjit Sandhu, Kern H. Guppy, Stella Lee, and Victor Froelicher. International application of a new probability algorithm for the diagnosis of coronary artery disease. <em>The American Journal of Cardiology</em>, 64(5):304––310, 1989. <a class="reference external" href="https://doi.org/10.1016/0002-9149(89)90524-9">doi:10.1016/0002-9149(89)90524-9</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id2">DG17</a></span></dt>
+<dd><p>Dheeru Dua and Casey Graff. (uci) machine learning repository. 2017. URL: <a class="reference external" href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>.</p>
+</dd>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id5">GMM+16</a></span></dt>
+<dd><p>Elvira O. Gosmanova, Margit K. Mikkelsen, Miklos Z. Molnar, Jun L. Lu, Lenar T. Yessayan, Kamyar Kalantar-Zadeh, and Csaba P. Kovesdy. Association of systolic blood pressure variability with mortality, coronary heart disease, stroke, and renal disease. <em>Journal of the American College of Cardiology</em>, 68(13):1375–1386, 2016. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0735109716346071">https://www.sciencedirect.com/science/article/pii/S0735109716346071</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.jacc.2016.06.054">doi:https://doi.org/10.1016/j.jacc.2016.06.054</a>.</p>
+</dd>
+<dt class="label" id="id15"><span class="brackets"><a class="fn-backref" href="#id6">Rof98</a></span></dt>
+<dd><p>C Roffe. Ageing of the heart. <em>Br J Biomed Sci</em>, 55(2):136–148, June 1998.</p>
+</dd>
+</dl>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1036,7 +1050,7 @@ will replace the existing scale.
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-model">Classification Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model">Testing the Model</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
 </ul>
 
   </nav></div>

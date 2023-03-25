@@ -1,5 +1,8 @@
 title: EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS
 author: "Daniel Lee, Eric Leung, & Sam Thorne"
+sphinx:
+  config:
+    bibtex_reference_style: author_year
 execute:
   execute_notebooks: force
 bibtex_bibfiles:
