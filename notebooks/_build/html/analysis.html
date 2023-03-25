@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS &#8212; EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'analysis';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    <p class="title logo__title">EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-exploratory-data-analysis">Preliminary Exploratory Data Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-testing-set">Training and Testing Set</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#literature-research-on-predictors">Literature Research on Predictors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resting-blood-pressure">Resting Blood Pressure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age">Age</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-heart-rate-achieved">Maximum Heart Rate Achieved</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-visualizations-of-predictors">Initial Visualizations of Predictors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward Selection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-data-tidying">Completing Data tidying</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#majority-classifier">Majority Classifier</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-model">Classification Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model">Testing the Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="evaluating-accuracy-of-predetermined-variables-to-predict-severity-of-heart-disease-in-patients">
+<h1>EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS<a class="headerlink" href="#evaluating-accuracy-of-predetermined-variables-to-predict-severity-of-heart-disease-in-patients" title="Permalink to this headline">#</a></h1>
+<p><strong>Adapted by:</strong> Daniel Lee, Eric Leung, &amp; Sam Thorne</p>
+<p><strong>Original Authors:</strong> Emerson Crick, Allie Janowicz, Ziva Subelj, &amp; Sam Thorne</p>
+</section>
+<section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>Heart disease refers to a number of different cardiovascular conditions including coronary artery disease, arrhythmia, and heart failure. These diseases have become the leading causes of death in the United States, killing over 659,000 people and costing the government $363 billion each year. Heart disease is associated with a number of factors such as unhealthy blood pressure, cholesterol, and more (National Center for Chronic Disease Prevention and Health Promotion, 2022).</p>
+<p><strong>We are asking: are age (<code class="docutils literal notranslate"><span class="pre">age</span></code>), maximum heart rate (<code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>), and resting blood pressure (<code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>) good at predicting the severity of heart disease in a patient? Based on literature research, we predict that age, maximum heart rate, and resting blood pressure will contribute to the different degrees of heart disease (ranging from 0 being healthy to 4 being the most severe heart cases).</strong></p>
+<p>The data we will use comes from “processed.switzerland.data,” “processed.cleveland.data,” “processed.hungarian.data” and “processed.va.data” provided in the Heart Disease dataset (Dua &amp; Graff, 2019). It was collected from the clinical and noninvasive test results of 143 patients undergoing angiography at the University Hospitals in Zurich and Basel, 303 patients undergoing angiography at the Cleveland Clinic in Cleveland, Ohio, 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Bupadepest and 200 patients undergoing angiography at the Veterans Administration Medical Center in Long Beach, California (Detrano et al., 1989).</p>
+<p>Below are the packages we loaded to complete our data analysis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&#39;../tests/tests.R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.2 ──
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.6      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.5 
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.8      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.10
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.2.1      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.1 
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.1.3      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.2 
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">readr</span>::<span class=" -Color -Color-Green">edition_get()</span>   masks <span class=" -Color -Color-Blue">testthat</span>::edition_get()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>        masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">purrr</span>::<span class=" -Color -Color-Green">is_null()</span>       masks <span class=" -Color -Color-Blue">testthat</span>::is_null()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>           masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">readr</span>::<span class=" -Color -Color-Green">local_edition()</span> masks <span class=" -Color -Color-Blue">testthat</span>::local_edition()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">matches()</span>       masks <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Test passed</span> 😀
+<span class=" -Color -Color-Green">Test passed</span> 🥳
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────── tidymodels 1.0.0 ──
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">broom       </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">rsample     </span> 1.1.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dials       </span> 1.1.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tune        </span> 1.0.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">infer       </span> 1.0.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflows   </span> 1.1.2
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">modeldata   </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflowsets</span> 1.0.0
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">parsnip     </span> 1.0.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">yardstick   </span> 1.1.0
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">recipes     </span> 1.0.4     
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ───────────────────────────────────────── tidymodels_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">scales</span>::<span class=" -Color -Color-Green">discard()</span>  masks <span class=" -Color -Color-Blue">purrr</span>::discard()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>    masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">fixed()</span>   masks <span class=" -Color -Color-Blue">stringr</span>::fixed()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">purrr</span>::<span class=" -Color -Color-Green">is_null()</span>   masks <span class=" -Color -Color-Blue">testthat</span>::is_null()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>       masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">rsample</span>::<span class=" -Color -Color-Green">matches()</span> masks <span class=" -Color -Color-Blue">dplyr</span>::matches(), <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">yardstick</span>::<span class=" -Color -Color-Green">spec()</span>  masks <span class=" -Color -Color-Blue">readr</span>::spec()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">step()</span>    masks <span class=" -Color -Color-Blue">stats</span>::step()
+<span class=" -Color -Color-Blue">•</span> Learn how to get started at <span class=" -Color -Color-Green">https://www.tidymodels.org/start/</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">414</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">6</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Green">dbl</span> (6): diagnosis_f, age, rest_bp, max_heart_rate, chest_pain, sex
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">repr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">e1071</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.matrix.max.rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/selection_forward_function.R&quot;</span><span class="p">)</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/majority_classifier_function.R&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reading data off internet to make csv files</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/place_data.R&quot;</span><span class="p">)</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/joining_data.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.2 ──
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.6      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.5 
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.8      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.10
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.2.1      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.1 
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.1.3      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.2 
+── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
+── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────── tidymodels 1.0.0 ──
+
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">broom       </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">rsample     </span> 1.1.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dials       </span> 1.1.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tune        </span> 1.0.1
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">infer       </span> 1.0.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflows   </span> 1.1.2
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">modeldata   </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflowsets</span> 1.0.0
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">parsnip     </span> 1.0.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">yardstick   </span> 1.1.0
+<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">recipes     </span> 1.0.4     
+
+── <span class=" -Color -Color-Bold">Conflicts</span> ───────────────────────────────────────── tidymodels_conflicts() ──
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">scales</span>::<span class=" -Color -Color-Green">discard()</span> masks <span class=" -Color -Color-Blue">purrr</span>::discard()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>   masks <span class=" -Color -Color-Blue">stats</span>::filter()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">fixed()</span>  masks <span class=" -Color -Color-Blue">stringr</span>::fixed()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>      masks <span class=" -Color -Color-Blue">stats</span>::lag()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">yardstick</span>::<span class=" -Color -Color-Green">spec()</span> masks <span class=" -Color -Color-Blue">readr</span>::spec()
+<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">step()</span>   masks <span class=" -Color -Color-Blue">stats</span>::step()
+<span class=" -Color -Color-Blue">•</span> Use <span class=" -Color -Color-Green">tidymodels_prefer()</span> to resolve common conflicts.
+
+Loading required package: lattice
+
+
+Attaching package: ‘caret’
+
+
+The following objects are masked from ‘package:yardstick’:
+
+    precision, recall, sensitivity, specificity
+
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+
+
+Attaching package: ‘e1071’
+
+
+The following object is masked from ‘package:tune’:
+
+    tune
+
+
+The following object is masked from ‘package:rsample’:
+
+    permutations
+
+
+The following object is masked from ‘package:parsnip’:
+
+    tune
+
+
+
+Attaching package: ‘testthat’
+
+
+The following object is masked from ‘package:rsample’:
+
+    matches
+
+
+The following object is masked from ‘package:dplyr’:
+
+    matches
+
+
+The following object is masked from ‘package:purrr’:
+
+    is_null
+
+
+The following objects are masked from ‘package:readr’:
+
+    edition_get, local_edition
+
+
+The following object is masked from ‘package:tidyr’:
+
+    matches
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preliminary-exploratory-data-analysis">
+<h1>Preliminary Exploratory Data Analysis<a class="headerlink" href="#preliminary-exploratory-data-analysis" title="Permalink to this headline">#</a></h1>
+<p>We combined the datasets “processed.switzerland.data,” “processed.va.data”, “processed.cleveland.data,” and “processed.hungarian.data”, to generate a longer and more complete dataset. Our complete aggregated data contains 13 different columns with an additional 8 that repeat some of the variables as factors instead of numeric types. Based on initial viewing of the data we decided to eliminate the <code class="docutils literal notranslate"><span class="pre">ST_dep</span></code> and <code class="docutils literal notranslate"><span class="pre">slope</span></code> columns as they were missing too many points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_csv</span><span class="p">()</span>
+<span class="n">heart_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 720 × 21</caption>
+<thead>
+	<tr><th scope=col>place</th><th scope=col>age</th><th scope=col>sex</th><th scope=col>chest_pain</th><th scope=col>rest_bp</th><th scope=col>cholestoral_mmHg</th><th scope=col>fasting_bs</th><th scope=col>rest_ECG</th><th scope=col>max_heart_rate</th><th scope=col>exercise</th><th scope=col>⋯</th><th scope=col>thal</th><th scope=col>diagnosis</th><th scope=col>sex_f</th><th scope=col>chest_pain_f</th><th scope=col>fasting_bs_f</th><th scope=col>rest_ECG_f</th><th scope=col>exercise_f</th><th scope=col>major_vessels_f</th><th scope=col>thal_f</th><th scope=col>diagnosis_f</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>hungary</td><td>63</td><td>1</td><td>4</td><td>140</td><td>260</td><td>0</td><td>1</td><td>112</td><td>1</td><td>⋯</td><td>NA</td><td>2</td><td>1</td><td>4</td><td>0</td><td>1</td><td>1</td><td>NA</td><td>NA</td><td>2</td></tr>
+	<tr><td>hungary</td><td>44</td><td>1</td><td>4</td><td>130</td><td>209</td><td>0</td><td>1</td><td>127</td><td>0</td><td>⋯</td><td>NA</td><td>0</td><td>1</td><td>4</td><td>0</td><td>1</td><td>0</td><td>NA</td><td>NA</td><td>0</td></tr>
+	<tr><td>hungary</td><td>60</td><td>1</td><td>4</td><td>132</td><td>218</td><td>0</td><td>1</td><td>140</td><td>1</td><td>⋯</td><td>NA</td><td>2</td><td>1</td><td>4</td><td>0</td><td>1</td><td>1</td><td>NA</td><td>NA</td><td>2</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>switzerland</td><td>72</td><td>1</td><td>3</td><td>160</td><td>0</td><td>NA</td><td>2</td><td>114</td><td>0</td><td>⋯</td><td>NA</td><td>0</td><td>1</td><td>3</td><td>NA</td><td>2</td><td>0</td><td>2 </td><td>NA</td><td>0</td></tr>
+	<tr><td>switzerland</td><td>73</td><td>0</td><td>3</td><td>160</td><td>0</td><td> 0</td><td>1</td><td>121</td><td>0</td><td>⋯</td><td> 3</td><td>1</td><td>0</td><td>3</td><td>0 </td><td>1</td><td>0</td><td>NA</td><td>3 </td><td>1</td></tr>
+	<tr><td>switzerland</td><td>74</td><td>1</td><td>2</td><td>145</td><td>0</td><td>NA</td><td>1</td><td>123</td><td>0</td><td>⋯</td><td>NA</td><td>1</td><td>1</td><td>2</td><td>NA</td><td>1</td><td>0</td><td>NA</td><td>NA</td><td>1</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 1.</strong></em> <em>All columns with all data from the four heart disease data sets.</em></style></p>
+</section>
+<section id="training-and-testing-set">
+<h1>Training and Testing Set<a class="headerlink" href="#training-and-testing-set" title="Permalink to this headline">#</a></h1>
+<p>Before creating our classification model, we partition the <code class="docutils literal notranslate"><span class="pre">heart_data</span></code> into a training (75%) and testing (25%) set using the <code class="docutils literal notranslate"><span class="pre">tidymodels</span></code> package. In data analysis it is important to split the data right away to ensure that the classifier we build never sees the testing data. We will train the model using only the training set and test it on the test set once we build the <span class="math notranslate nohighlight">\(K\)</span>-nn classifier. We will use the variable <code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code> as our class label as this is what we seek to predict.</p>
+<p>We set the seed with the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function in order to make the randomized processes throughout our analysis reproducible. A seed is a numerical starting value, which determines the sequence of random numbers R will generate. Throughout the analysis the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function will be at the top of each cell that completes a randomizing action.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Splitting data into training and testing sets</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">heart_split</span><span class="o">&lt;-</span><span class="nf">initial_split</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="o">=</span><span class="m">0.75</span><span class="p">,</span><span class="w"> </span><span class="n">strata</span><span class="o">=</span><span class="n">diagnosis_f</span><span class="p">)</span>
+<span class="n">heart_training</span><span class="o">&lt;-</span><span class="nf">training</span><span class="p">(</span><span class="n">heart_split</span><span class="p">)</span>
+<span class="n">heart_testing</span><span class="o">&lt;-</span><span class="nf">testing</span><span class="p">(</span><span class="n">heart_split</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="literature-research-on-predictors">
+<h1>Literature Research on Predictors<a class="headerlink" href="#literature-research-on-predictors" title="Permalink to this headline">#</a></h1>
+<p>To begin choosing which predictors to use for our classifier, we conducted literature research on columns in our data set to determine their relationship with heart disease. This literature research below helped us to build our initial research question and is later confirmed with the use of foward selection.</p>
+<section id="resting-blood-pressure">
+<h2>Resting Blood Pressure<a class="headerlink" href="#resting-blood-pressure" title="Permalink to this headline">#</a></h2>
+<p>High blood pressure has always been associated with heart attack and heart disease. High blood pressure can damage the arteries by forcing them to stay in a taut position. This decreases the vessels ability to flow blood around the body which can lead to heart disease (Centers for Disease Control and Prevention, n.d.). From this we found indications that higher blood pressure in individuals resulted in coronary heart disease (Gosmanova et al., 2016). According to this research we expect those with higher resting blood pressure to have more severe heart disease.</p>
+</section>
+<section id="age">
+<h2>Age<a class="headerlink" href="#age" title="Permalink to this headline">#</a></h2>
+<p>Aging can cause changes in the heart and blood vessels that may increase person’s risk of developing cardiovascular disease. Aging to one’s heart is asociated with a reduction in its function. Some of the age-associated changes in the heart might be (partially) reversed, by exercise or specific drugs, however, it remains unclear whether this results in any definite advantages for the individual (Roffe, 1998). According to this research we expect older individuals to obtain heart disease of higher severity.</p>
+</section>
+<section id="maximum-heart-rate-achieved">
+<h2>Maximum Heart Rate Achieved<a class="headerlink" href="#maximum-heart-rate-achieved" title="Permalink to this headline">#</a></h2>
+<p>A low maximum heart rate can be associated with an increased risk of cardiac disease. Older hearts have a harder time than younger hearts pumping blood throughout the body because the heart gets tired and weaker with age. This can cause a decrease in daily physcial movement because there the heart is not able to preform as it used to. It is suspected that with a lower rate of blood pumping through the heart, there is a greater chance of other factors decreasing heart health that lead to heart disease (Christou &amp; Seals, 2008). According to this research we expect max heart rate will decrease as severity of heart disease increases.</p>
+</section>
+</section>
+<section id="initial-visualizations-of-predictors">
+<h1>Initial Visualizations of Predictors<a class="headerlink" href="#initial-visualizations-of-predictors" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boxplot visualizations for each of our predictors and heart diagnosis</span>
+<span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;../data/processed/heart_data.csv&#39;</span><span class="p">)</span>
+
+<span class="w">    </span>
+<span class="n">boxplot_age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age (years)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A. Boxplot of degree of heart \n disease in relation to patient&#39;s \nage&quot;</span><span class="p">)</span>
+<span class="n">boxplot_rest_bp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Resting blood pressure (mmHg)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B. Boxplot of degree of heart \ndisease in relation to patient&#39;s \nresting blood pressure&quot;</span><span class="p">)</span>
+<span class="n">boxplot_max_heart_rate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Maximum heart rate (BPM)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C. Boxplot of degree of heart \ndisease in relation to patient&#39;s \nmaximum heart rate&quot;</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
+<span class="n">boxplots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plot_grid</span><span class="p">(</span><span class="n">boxplot_age</span><span class="p">,</span><span class="w"> </span><span class="n">boxplot_rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">boxplot_max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="nf">show</span><span class="p">(</span><span class="n">boxplots</span><span class="p">)</span>
+<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;../figures/boxplot.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+“Removed 170 rows containing non-finite values (stat_boxplot).”
+Warning message:
+“Removed 160 rows containing non-finite values (stat_boxplot).”
+Saving 7 x 7 in image
+</pre></div>
+</div>
+<img alt="_images/4dc156ac66aec864db42e201aff22cab538b4aeb1c10b2faa8b892d7c29f5a1b.png" src="_images/4dc156ac66aec864db42e201aff22cab538b4aeb1c10b2faa8b892d7c29f5a1b.png" />
+</div>
+</div>
+<p><span style="color:gray"><em><strong>Figure 1.</strong></em></style></p>
+<p>These boxplots in Figure 1. are our inital visualizations to see if there really is a correlation between severity of heart disease and our predictors. From looking at all 3 predictors, Figure 1A. <code class="docutils literal notranslate"><span class="pre">age</span></code>, Figure 1B. <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, and Figure 1C. <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, we can see that there is a range of weakly positive and weakly negative to no relationship between the different diagnosed severities of heart disease (<code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code>)and the predictors.</p>
+<p>Figure 1A. shows there is a slight positive relation between age and heart disease severity, meaning the older a patient is, the more severe their heart disease would be.</p>
+<p>Figure 1B. shows there is no clear relationship between resting blood pressure and how severe a patients heart disease is. All the medians at different levels of severity are relatively level.</p>
+<p>Figure 1C. shows there is a slight negative relationship between maximum heart rate and the severity of heart disease. This means a patient with no heart disease (0) or low severity (1) are able to acheive a higher maximum heart rate. This is because their heart is more healthy and able to pump blood efficiently when compared to a patient with high severity (4) heart disease.</p>
+<p>These visualizations are taken into consideration when making our classification model. We will see if these predictors used together will in fact give an accurate diagnosis for someone being examined for heart disease based on given dataset. We chose to proceed with these predictors because of our literature reseach support. In practice, these predictors are conditions that doctors use to give an <strong>initial diagnosis</strong> of heart disease. Our research question as to whether these predictors work to accurately predict the severity is analysed in the remainder of the project report.</p>
+</section>
+<section id="forward-selection">
+<h1>Forward Selection<a class="headerlink" href="#forward-selection" title="Permalink to this headline">#</a></h1>
+<p>To visualize the effectiveness of our chosen predictors on our data set, we used the process of forward selection. We chose to add this step to confirm that the choices of our predictors will work using this data, as Figure 1. failed to show any significant correlation.</p>
+<p>Forward selection is used to predict accuracy of a classifier that will be made using different predictors to create the model. Based on our literature research detailed above, we will be using forward selection on the variables age, resting blood pressure, and maximum heart rate. We made sure to use our training data set in the forward selection process so that the testing data is never seen by the classifier.</p>
+<p>Additionally we chose to run forward selection on chest pain type (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code>) and sex (<code class="docutils literal notranslate"><span class="pre">sex</span></code>) to get an idea of what our classifier would look like using more variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating data subsets for forward selection model using training data</span>
+<span class="n">heart_data_subset</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">chest_pain</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
+
+<span class="c1"># heart_data_subset</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_data_subset</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/forward_selection_subset.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have a subset of our data to work with, we can run forward selection to produce a table of accuracies based on the number of predictors. This forward selection coding immitates the model that will be made further down in the report. A seed is set to ensure reproducible results.</p>
+<p>Due to the iterative nature of forward selection and the usage of 5 predictors this cell will take a while to run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">accuracies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">forwardSelection</span><span class="p">(</span><span class="n">heart_data_subset</span><span class="p">)</span>
+<span class="n">accuracies</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>size</th><th scope=col>model_string</th><th scope=col>accuracy</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>diagnosis_f ~ max_heart_rate                           </td><td>0.4462406</td></tr>
+	<tr><td>2</td><td>diagnosis_f ~ max_heart_rate+rest_bp                   </td><td>0.7610736</td></tr>
+	<tr><td>3</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain        </td><td>0.7658033</td></tr>
+	<tr><td>4</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain+sex    </td><td>0.7680744</td></tr>
+	<tr><td>5</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain+sex+age</td><td>0.7611596</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 2.</strong></em> <em>Forward selection results</em></style></p>
+<p>From Table 2. above, we can see that the accuracy increases with every added predictor. To make this result more clear, a visualization of accuracy compared to the number of predictors is included below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualization of number of predictors and accuracy based on forward selection</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
+<span class="n">forward_visualization</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accuracy</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Number of predictors used&#39;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Estimated accuracy using forward selection&#39;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Number of different predictors compared \nto the accuracy of classifier model&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+
+<span class="n">forward_visualization</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/16b69e5237f0cb2b9b7b41d1613f3159cd250aa9e8182e5564242bd3fa7b1b94.png" src="_images/16b69e5237f0cb2b9b7b41d1613f3159cd250aa9e8182e5564242bd3fa7b1b94.png" />
+</div>
+</div>
+<p><span style="color:gray"><em><strong>Figure 2.</strong></em></style></p>
+<p>Figure 2. shows us that all five of our predictors increase the estimated accuracy of our classifier. However we can also see that the accuracy plateau’s at the fourth and fifth predictor (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code>).</p>
+<p>According to this visualization our pre-chosen predictors should be accurate predictors for the severity of heart disease. It also tells us that with any more predictors our classifier would not be benefitted and with any less we would have drastically lower accuracy.</p>
+<p>To conclude, we chose resting blood pressure, age and maximum heart rate as our predictors for the severity of heart disease as seen in row 3 of Table 2.</p>
+<section id="completing-data-tidying">
+<h2>Completing Data tidying<a class="headerlink" href="#completing-data-tidying" title="Permalink to this headline">#</a></h2>
+<p>Now that our indicators <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code> and <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code> to predict <code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code> have been chosen, we can further tidy our data by eliminating the unused columns. Additionally, all the rows containing NA were removed. Since our data has already been split into training and testing sets we will tidy both of the subsets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting chosen predictors within training and testing data</span>
+<span class="n">heart_training</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_training</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">diagnosis_f</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
+<span class="n">heart_training</span>
+
+<span class="c1"># Adding training set to directory</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_training</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/training-split.csv&#39;</span><span class="p">)</span>
+
+<span class="n">heart_testing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_testing</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">diagnosis_f</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
+
+<span class="c1"># Adding testing set to directory</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/testing-data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 414 × 4</caption>
+<thead>
+	<tr><th scope=col>rest_bp</th><th scope=col>age</th><th scope=col>max_heart_rate</th><th scope=col>diagnosis_f</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>130</td><td>44</td><td>127</td><td>0</td></tr>
+	<tr><td>110</td><td>66</td><td> 99</td><td>0</td></tr>
+	<tr><td>170</td><td>63</td><td> 84</td><td>4</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>145</td><td>65</td><td> 67</td><td>3</td></tr>
+	<tr><td>160</td><td>65</td><td>122</td><td>3</td></tr>
+	<tr><td>140</td><td>70</td><td>157</td><td>3</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 3.</strong></em> <em>Tidied data set containing our selected predictors we will use to determine the severity of heart disease in an individual</em></style></p>
+</section>
+</section>
+<section id="majority-classifier">
+<h1>Majority Classifier<a class="headerlink" href="#majority-classifier" title="Permalink to this headline">#</a></h1>
+<p>After selecting our predictors we examined the distribution of our outcome variable. Below, we show the majority classifier data frame which displays the proportion of each outcome found in our training data as well as a visualization to accompany it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># majority classifier and visualization</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">total_rows</span><span class="o">&lt;-</span><span class="nf">nrow</span><span class="p">(</span><span class="n">heart_training</span><span class="p">)</span>
+
+<span class="n">number_of_columns</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">summarize</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="nf">n</span><span class="p">())</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="w">    </span>
+
+<span class="n">majority_classifier</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">)</span><span class="o">%&gt;%</span><span class="w">   </span>
+<span class="w">    </span><span class="nf">summarize</span><span class="p">(</span><span class="n">percent_outcomes</span><span class="o">=</span><span class="nf">n</span><span class="p">()</span><span class="o">/</span><span class="n">total_rows</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">     </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">percent_outcomes</span><span class="p">))</span><span class="o">%&gt;%</span>
+<span class="w">     </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">number_of_columns</span><span class="p">)</span>
+<span class="c1">#slice(1)</span>
+<span class="n">majority_classifier</span>
+
+<span class="c1"># write csv to data/modelling</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">majority_classifier</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/majority_classifier.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 5 × 3</caption>
+<thead>
+	<tr><th scope=col>diagnosis_f</th><th scope=col>percent_outcomes</th><th scope=col>number</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>31.159420</td><td> 78</td></tr>
+	<tr><td>2</td><td>22.946860</td><td>129</td></tr>
+	<tr><td>3</td><td>21.497585</td><td> 95</td></tr>
+	<tr><td>0</td><td>18.840580</td><td> 89</td></tr>
+	<tr><td>4</td><td> 5.555556</td><td> 23</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 4.</strong></em> <em>Majority classifier showing the number of people with each severity level of heart disease in the training set</em></style></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">majority_classifier_vis_function</span><span class="p">(</span><span class="n">majority_classifier</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2503ad662a94eb0c48b13ddae67f25d378d56f6d7ebb5b5c552bb8a29eba9097.png" src="_images/2503ad662a94eb0c48b13ddae67f25d378d56f6d7ebb5b5c552bb8a29eba9097.png" />
+</div>
+</div>
+<p><span style="color:gray"><em><strong>Figure 3.</strong></em></style></p>
+<p>Table 4. and Figure 3. give insight into the proportion of patients from the training set with each level of heart disease. The most common diagnosis in our data set is severity 1 with 31%. This value sets a baseline accuracy that our model should exceed to be deemed an acceptable classifier. In other words, if our model can predict more accurately than simply picking the most likely outcome every time, then we are on the right track in terms of accuracy.</p>
+<p>Table 4. also shows us that none of the percent outcomes are over 50%, and the outcomes for severity 1, 2, 3, and 0 are within 15% of each other. This means our data set is distributed evenly enough to build a decent classifier model. Knowing the frequency of each outcome also enables us to set an upper bound on our number of neighbors which is something we will discuss in further detail in subsequent cells.</p>
+</section>
+<section id="classification-model">
+<h1>Classification Model<a class="headerlink" href="#classification-model" title="Permalink to this headline">#</a></h1>
+<p><strong>The following steps can all be found in the function <code class="docutils literal notranslate"><span class="pre">classifier</span></code></strong>.</p>
+<p>Because <span class="math notranslate nohighlight">\(K\)</span>-nearest neighbors is sensitive to the scale of the predictors, we will do some preprocessing to standardize them. We use only our training data to create a recipe for our classifier. This recipe will compute the shift / scale values for each variable, of the data we input into our classifier. For now we will use our training data as this is part of training procedure and we want to ensure that our test data does not influence any aspect of model training.</p>
+<p>Next we we made a model for our classifier being sure to use only the training dataset.
+First using <code class="docutils literal notranslate"><span class="pre">tune()</span></code>, so that we can find the optimal <span class="math notranslate nohighlight">\(K\)</span> (number of neighbors) for our classifier. With <code class="docutils literal notranslate"><span class="pre">weight_func</span></code> we specify that we want to use the <em>straight-line</em> distance as our measurement between the predictor and our new point. Finally, we must specify that we are conducting classification.</p>
+<p>In order to find the optimal <span class="math notranslate nohighlight">\(K\)</span> value for our classifier we must now separate our training data into many pieces to test each <span class="math notranslate nohighlight">\(K\)</span> we are looking at. Five fold cross validation is used to split the training data into 5 sets of data which is then split into 5 pieces. In each group one of the 5 pieces immitates a testing set and is used to test each <span class="math notranslate nohighlight">\(K\)</span> value and determine different accuracies for each <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<p>We stratified the data by <code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code> to make sure the new splits contain similar proportions of each of the 5 diagnosis we are trying to predict.</p>
+<p>We will now run a <code class="docutils literal notranslate"><span class="pre">workflow()</span></code> to determine various accuracies found using different <span class="math notranslate nohighlight">\(K\)</span> values. This workflow does the cross-validation work that was described above using our now split training data. This workflow will include our model and recipe that were formed above. We tested <span class="math notranslate nohighlight">\(K\)</span> values from one to twenty-one because this is the lowest frequency of diagnoses (category 4 appeared 21 times in the training set). If we were to use a number of neighbors greater than twenty-one the majority voting used in <span class="math notranslate nohighlight">\(Knn\)</span> classification would be skewed against diagnosis 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cross validation to find optimal K value</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/classification_model.R&#39;</span><span class="p">)</span>
+
+<span class="n">heart_data_accuracies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classifier</span><span class="p">(</span><span class="n">heart_training</span><span class="p">)</span>
+<span class="n">heart_data_accuracies</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 21 × 7</caption>
+<thead>
+	<tr><th scope=col>neighbors</th><th scope=col>.metric</th><th scope=col>.estimator</th><th scope=col>mean</th><th scope=col>n</th><th scope=col>std_err</th><th scope=col>.config</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>1</td><td>accuracy</td><td>multiclass</td><td>0.7494234</td><td>5</td><td>0.02120650</td><td>Preprocessor1_Model01</td></tr>
+	<tr><td>2</td><td>accuracy</td><td>multiclass</td><td>0.7494234</td><td>5</td><td>0.02120650</td><td>Preprocessor1_Model02</td></tr>
+	<tr><td>3</td><td>accuracy</td><td>multiclass</td><td>0.5998924</td><td>5</td><td>0.02483969</td><td>Preprocessor1_Model03</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>19</td><td>accuracy</td><td>multiclass</td><td>0.3357444</td><td>5</td><td>0.01359131</td><td>Preprocessor1_Model19</td></tr>
+	<tr><td>20</td><td>accuracy</td><td>multiclass</td><td>0.3429446</td><td>5</td><td>0.01034037</td><td>Preprocessor1_Model20</td></tr>
+	<tr><td>21</td><td>accuracy</td><td>multiclass</td><td>0.3302395</td><td>5</td><td>0.01992470</td><td>Preprocessor1_Model21</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 5.</strong></em> <em>Parameter values that help select a k value</em></style></p>
+<p>To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># K visualization</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/model_visualization.R&#39;</span><span class="p">)</span>
+<span class="nf">knn_visualization</span><span class="p">(</span><span class="n">heart_data_accuracies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/780e81e7bc9e83cb2153adcb23ce10a36b53d7bfb7f99dbdef66cc21a816dcf9.png" src="_images/780e81e7bc9e83cb2153adcb23ce10a36b53d7bfb7f99dbdef66cc21a816dcf9.png" />
+</div>
+</div>
+<p><span style="color:gray"><em><strong>Figure 4.</strong></em></style></p>
+<p>Setting the number of neighbours to <span class="math notranslate nohighlight">\(K\)</span> = 2 will give the highest accuracy, as seen in Figure 4. The shape of Figure 4. is not what we expected to see because of the huge drop in the accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. This means that there is a high risk of losing model accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. Choosing <span class="math notranslate nohighlight">\(K\)</span> = 1 would also work considering the accuracy; however, it is a small number and it could lead to overfitting our classifier.</p>
+<p>Figure 4. shows that choosing a <span class="math notranslate nohighlight">\(K\)</span> higher than two results in a drastically lower estimated accuracy. We experimented with testing the accuracy of models with higher <span class="math notranslate nohighlight">\(K\)</span> values, but they decreased the accuracy even further. For example, when we used three neighbours instead of two, the accuracy decreased by about 15%, and it continued to decrease the higher the <span class="math notranslate nohighlight">\(K\)</span> value we used. We also checked for spikes at much higher K values, but the accuracy continued to level off around 0.40. To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
+<p>After our initial analysis in Figure 4. we decided to continue our analysis despite the suspicious shape of Figure 4. This next step pulls optimal the <span class="math notranslate nohighlight">\(K\)</span> value based on the above cross validation to choose the appropriate number of neighbors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pulling optimal K value based on above cross validation</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">best_k</span><span class="o">&lt;-</span><span class="n">heart_data_accuracies</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">mean</span><span class="p">))</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">slice</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">pull</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
+<span class="c1"># best_k</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have our optimal <span class="math notranslate nohighlight">\(K\)</span> value we continued to build our classifier and started by building a new model using <code class="docutils literal notranslate"><span class="pre">best_k</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># New classifier model using optimal K values</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">heart_data_spec_final</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nearest_neighbor</span><span class="p">(</span><span class="n">weight_func</span><span class="o">=</span><span class="s">&quot;rectangular&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">neighbors</span><span class="o">=</span><span class="n">best_k</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">set_engine</span><span class="p">(</span><span class="s">&quot;kknn&quot;</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">set_mode</span><span class="p">(</span><span class="s">&quot;classification&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To finalize the classifier we now plug the recipe and model into a workflow so it can be used on other data in the future. This step fits the classifier to our training data therefore enabling it’s predictive ability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final workflow for classifier using new model.</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">heart_data_final_fit</span><span class="o">&lt;-</span><span class="nf">workflow</span><span class="p">()</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">add_recipe</span><span class="p">(</span><span class="n">heart_data_recipe</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">add_model</span><span class="p">(</span><span class="n">heart_data_spec_final</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">heart_training</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="c1">#heart_data_final_fit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-the-model">
+<h1>Testing the Model<a class="headerlink" href="#testing-the-model" title="Permalink to this headline">#</a></h1>
+<p>We pass the test set to our workflow to test the accuracy of the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing our classifier using the testing set</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">heart_data_summary</span><span class="o">&lt;-</span><span class="n">heart_data_final_fit</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">predict</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">metrics</span><span class="p">(</span><span class="n">truth</span><span class="o">=</span><span class="n">diagnosis_f</span><span class="p">,</span><span class="w"> </span><span class="n">estimate</span><span class="o">=</span><span class="n">.pred_class</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">filter</span><span class="p">(</span><span class="n">.metric</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="n">heart_data_summary</span>
+
+<span class="n">heart_data_predict</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_data_final_fit</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">predict</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span>
+
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_data_predict</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/predict_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>.metric</th><th scope=col>.estimator</th><th scope=col>.estimate</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>accuracy</td><td>multiclass</td><td>0.8308824</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p><span style="color:gray"><em><strong>Table 6.</strong></em> <em>Model accuracy with testing set</em></style></p>
+<p>The accuracy is a reasonable number that shows that even though our predictors within our model produce a strange <span class="math notranslate nohighlight">\(K\)</span>-nearest neighbour graph, we still built a model that will diagnose patients with ~80% accuracy.</p>
+<p>We know this is a reasonable accuracy for our classifier from looking at Figure 3. As discussed in the preceding paragraph, we are looking for a classifier with higher accuracy than that of the majority classifier. In our case, the majority label made up ~30% of our dataset, so the accuracy of ~80% is more than double that of our majority label. Therefore, our classifier is reasonably good.</p>
+<p>To test the accuracy of the model we built, we also provide a confusion matrix; a table of predicted and correct labels,  using the <code class="docutils literal notranslate"><span class="pre">conf_mat</span></code> function. This enables us to easily see false positives and false negatives of diagnosis, as well as what was predicted accurately.</p>
+<p>A heatmap based on the confusion matrix was made to more easily understand what is being displayed above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># confusion matrix heat map visualization</span>
+<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/confusion_matrix.R&#39;</span><span class="p">)</span>
+
+<span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">heart_data_predict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scale for &#39;fill&#39; is already present. Adding another scale for &#39;fill&#39;, which
+will replace the existing scale.
+</pre></div>
+</div>
+<img alt="_images/e6edf3672006230573458b2baddf9cb9591a3ff1913e74a2da01887f25e87ddf.png" src="_images/e6edf3672006230573458b2baddf9cb9591a3ff1913e74a2da01887f25e87ddf.png" />
+</div>
+</div>
+<p><span style="color:gray"><em><strong>Figure 5.</strong></em></style></p>
+<p>The confusion matrix (Figure 5.) shows that 22 individuals were correctly diagnosed with no presence of heart disease, 39 were correctly diagnosed with low severity of heart disease, 22 were correctly diagnosed with medium severity of heart disease, 20 were correctly diagnosed with high severity of heart disease, and 4 were correctly diagnosed with extreme severity of heart disease. Therefore, the classifier labeled <span class="math notranslate nohighlight">\(22 + 39 + 21 + 20 + 4 = 106\)</span> diagnoses correctly. This is a rather good result as the proportions of each heart disease class diagnosed correctly mirror the proportions seen in the dataset. Our classifier is therefore not favouring one diagnosis over the other.</p>
+<p>Unfortunately, the classifier also made errors and classified a total of 18 patients with a false positive, meaning the patient’s heart disease was worse than it actually was. Moreover, the classifier labelled six patients with false negatives, meaning the patients’ heart disease was actually worse than what was predicted. A discussion as to the false positive and false negative results is in the discussion section.</p>
+</section>
+<section id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h1>
+<p><strong>Conclusion</strong></p>
+<p>The predictors, <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, have high accuracy and a good chance of accurately predicting a patient’s heart disease severity. However, some results indicate that these predictors may not be the best in actual practice. For instance, Figure 1. shows that these predictors do not have significant correlations with a diagnosis of severity of heart disease. Additionally, there was a significant drop-off after two neighbours in our <span class="math notranslate nohighlight">\(K\)</span> graph, proposing that our accuracy results could be due to luck. However, our confusion matrix reveals promising results.</p>
+<p><strong>Is this what you expected to find?</strong></p>
+<p>We expected to find that the larger the numerical value of a patient’s age and resting blood pressure and the lower the maximum heart rate, the greater at risk a person is to have worsened heart disease. We actually found that these predictors have a weak correlation with the outcome variable. However, our model still predicts heart disease severity accurately.</p>
+<p>From our confusion matrix in Figure 5., we were more likely to predict a false positive than a false negative. This is good because, with a health condition like heart disease that generates ranging severity, it is better to be given a false positive and be treated as if the disease were worse than be given a false negative and not be treated at all or to a lower care level than what is needed. A reason we see 18 false positives could be because of the predictors we chose to use in our model. We saw in Figure 1. that these predictors are not ideal because of the weak relationships they show with the severities of heart disease. This can also be said as to why we have 6 false negatives. However, considering that the accuracy of our model is good, this is a reasonable number of false negatives. These values for the false positives and false negatives also relate to our research question and conclusion that our selected predictors are primarily good at predicting the preliminary severity of a patient’s heart disease. However, a diagnosis cannot be concluded off these factors alone. Unfortunately, false negatives and false positives are given in medicine in the real world, but from actual research and examples like we were able to display in our classification, it is more likely that a patient will have a proper diagnosis than a false positive or negative.</p>
+<p><strong>What impact could such findings have?</strong></p>
+<p>This could give medical professionals an idea that these predictors are good initial tests to check the severity of someone’s heart disease, but further testing should be done to have a more accurate diagnosis. The severity levels of heart disease (0 to 4) are hard to distinguish between for our selected predictors, but they can be good indicators of a person having heart disease. This information can also be given to Government health care facilities as a precaution to provide public awareness and send letters to older citizens to check with a doctor on the status of their heart health. Also, individuals who feel they want to watch their heart health can compare their resting blood pressure, age and maximum heart rate with this model to estimate if they have heart disease and to what severity.</p>
+<p><strong>What future Questions could this lead to?</strong></p>
+<p>What further research needs to be done on the predictors (maximum heart rate, age and resting blood pressure) to see if they are actually good predictors of heart disease? How could heart disease be lessened in the future, or how can heart disease be prevented? Patients at what age and with what symptoms should be encouraged to take precautions and see a doctor?</p>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<p>Centers for Disease Control and Prevention. (n.d.) <em>About High Blood Pressure</em>. Retrieved March 27, 2022, from <a class="reference external" href="https://www.cdc.gov/bloodpressure/about.htm#:~:text=High%20blood%20pressure%20can%20damage%20your%20arteries%20by%20making%20them,Chest%20pain%2C%20also%20called%20angina">https://www.cdc.gov/bloodpressure/about.htm#:~:text=High blood pressure can damage your arteries by making them,Chest pain%2C also called angina</a></p>
+<p>Christou, D. D., &amp; Seals, D. R. (2008). Decreased maximal heart rate with aging is related to reduced β-adrenergic responsiveness but is largely explained by a reduction in intrinsic heart rate. Journal of Applied Physiology, 105(1), 24–29. <a class="reference external" href="https://doi.org/10.1152/japplphysiol.90401.2008">https://doi.org/10.1152/japplphysiol.90401.2008</a></p>
+<p>Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J.-J., Sandhu, S., Guppy, K. H., Lee, S., &amp; Froelicher, V. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. <em>The American Journal of Cardiology, 64</em>(5), 304-310. <a class="reference external" href="https://doi.org/10.1016/0002-9149(89)90524-9">https://doi.org/10.1016/0002-9149(89)90524-9</a></p>
+<p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a class="reference external" href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science. Heart Disease Data Set created by William Steinbrunn, M.D. from University Hospital, Zurich, Switzerland, Matthias Pfisterer, M.D. from University Hospital, Basel, Switzerland, Andras Janosi, M.D. from Hungarian Institute of Cardiology, Budapest, Hungary and Robert Detrano, M.D., Ph.D. from V.A. Medical Center, Long Beach and Cleveland Clinic Foundation.</p>
+<p>Gosmanova, E. O., Mikkelsen, M. K., Molnar, M. Z., Lu, J. L., Yessayan, L. T., Kalantar-Zadeh, K. &amp; Kovesdy, C. P. (2016). Association of systolic blood pressure variability with mortality, coronary heart disease, stroke, and renal disease. <em>Journal of the American College of Cardiology, 68</em>(13), 1375-1097. <a class="reference external" href="https://doi.org/10.1016/j.jacc.2016.06.054">https://doi.org/10.1016/j.jacc.2016.06.054</a>.</p>
+<p>Heart Disease Data Set. UCI Machine Learning Repository: Heart disease data set. (n.d.). Retrieved March 10, 2022, from <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">https://archive.ics.uci.edu/ml/datasets/Heart+Disease</a></p>
+<p>National Center for Chronic Disease Prevention and Health Promotion, Division for Heart Disease and Stroke Prevention. (2022, February 7). <em>Heart Disease Facts</em>. Retrieved March 5, 2022, from <a class="reference external" href="https://www.cdc.gov/heartdisease/facts.htm">https://www.cdc.gov/heartdisease/facts.htm</a></p>
+<p>Roffe, C. (1998). Ageing of the heart. <em>British Journal of Biomedical Science, 55</em>(2), 136-148. ISSN: 0967-4845.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">EVALUATING ACCURACY OF PREDETERMINED VARIABLES TO PREDICT SEVERITY OF HEART DISEASE IN PATIENTS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-exploratory-data-analysis">Preliminary Exploratory Data Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-and-testing-set">Training and Testing Set</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#literature-research-on-predictors">Literature Research on Predictors</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resting-blood-pressure">Resting Blood Pressure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#age">Age</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-heart-rate-achieved">Maximum Heart Rate Achieved</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-visualizations-of-predictors">Initial Visualizations of Predictors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward Selection</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-data-tidying">Completing Data tidying</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#majority-classifier">Majority Classifier</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-model">Classification Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-model">Testing the Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Daniel Lee, Eric Leung, & Sam Thorne
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
