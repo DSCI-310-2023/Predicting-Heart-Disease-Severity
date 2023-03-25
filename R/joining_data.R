@@ -17,7 +17,7 @@ library(tidyverse)
 #'@returns A tidy version of the data with all the correct data types
 #'
 #'@examples
-#'# join_csv(hungary_path, va_path, cleveland_path, switzerland_path)
+#'# clean_csv('../data/raw/cleveland.csv')
 clean_csv <- function(place_csv){
        read_csv(place_csv, show_col_types = FALSE) %>%
        mutate(sex_f = as.factor(sex), 

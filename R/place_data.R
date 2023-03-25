@@ -20,7 +20,7 @@ library(testthat)
 #' 
 #' @returns a csv file for the place within data/raw.
 #' 
-#' @examples 
+#' @examples
 #' # web_data('switzerland',"https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.switzerland.data")
 web_data <- function(place, url){
   col_names <- c('age', 'sex', 'chest_pain', 'rest_bp', 'cholestoral_mmHg', 'fasting_bs', 
