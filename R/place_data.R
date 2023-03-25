@@ -9,13 +9,6 @@
 library(tidyverse)
 library(testthat)
 
-# url for each of the 4 data sets.
-url_switzerland <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.switzerland.data"
-url_va <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.va.data"
-url_cleveland <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.va.data"
-url_hungarian <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.va.data"
-
-
 #' Reads in heart data url
 #' 
 #' This function takes in the name of the place the heart data came from
@@ -25,13 +18,9 @@ url_hungarian <- "https://archive.ics.uci.edu/ml/machine-learning-databases/hear
 #'  'va', 'hungary', or 'switzerland'
 #' @param url a string containing url of online data
 #' 
-#' @returns a csv file for the place within data/processed.
-#'  Columns as factors: sex_f, chest_pain_f, fasting_bs_f, rest_ECG_f, 
-#'  exercise_f, major_vessels_f, thal_f, diagnosis_f
-#'  Columns as numbers: sex, chest_pain, fasting_bs rest_ECG, max_heart_rate, 
-#'  cholestoral_mmHg, exercise, major_vessels, thal, diagnosis, rest_bp
+#' @returns a csv file for the place within data/raw.
 #' 
-#' @examples 
+#' @examples
 #' # web_data('switzerland',"https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.switzerland.data")
 web_data <- function(place, url){
   col_names <- c('age', 'sex', 'chest_pain', 'rest_bp', 'cholestoral_mmHg', 'fasting_bs', 
@@ -42,22 +31,13 @@ web_data <- function(place, url){
     select(-ST_dep, -slope) %>%
     select(place, everything())
   if (place == 'switzerland'){
-    location = '../data/processed/wrangled_switzerland.csv'
+    location = '../data/raw/switzerland.csv'
   }else if(place =='va'){
-    location = '../data/processed/wrangled_va.csv'
+    location = '../data/raw/va.csv'
   }else if(place == 'cleveland'){
-    location = '../data/processed/wrangled_cleveland.csv'
+    location = '../data/raw/cleveland.csv'
   }else{
-    location = '../data/processed/wrangled_hungary.csv'
+    location = '../data/raw/hungary.csv'
   }
   write_csv(data, location)
 }
-
-# running the function:
-web_data('switzerland', url_switzerland)
-web_data('va', url_va)
-web_data('cleveland', url_cleveland)
-web_data('hungary', url_hungarian)
-
-
-
