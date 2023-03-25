@@ -1,5 +1,4 @@
 # this script takes in the file generated in 01-loading
-source('../R/01-loading.R')
 
 # it produces a csv file as 'data/processes/heart_data.csv'
 
