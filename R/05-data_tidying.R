@@ -2,6 +2,9 @@
 
 # produces 2 csv files inside data/modelling.
 # both are updated versions of the training and testing data
+library(tidyverse)
+
+source('R/joining_data.R')
 
 # reading files created in 03 script
 heart_training <- clean_csv('data/modelling/training_split.csv')

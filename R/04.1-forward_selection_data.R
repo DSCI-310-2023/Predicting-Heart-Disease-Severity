@@ -3,6 +3,9 @@
 # produces forward selection results as csv file
 # will be saved inside data/modelling
 
+library(tidyverse)
+set.seed(1)
+
 source('R/selection_forward_function.R')
 
 # reading file created in 04

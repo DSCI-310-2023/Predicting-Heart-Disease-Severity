@@ -3,6 +3,8 @@
 # produces 2 csv files inside data/modelling.
 # one that is the testing data and another that is the training data
 
+library(tidymodels)
+
 source('R/joining_data.R')
 
 set.seed(1)

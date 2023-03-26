@@ -4,6 +4,7 @@
 # produces a table from the training split
 
 source('R/classification_model.R')
+source('R/joining_data.R')
 
 # build the table and classifies it
 heart_data_accuracies <- classifier(clean_csv('data/modelling/training_split_new.csv'))

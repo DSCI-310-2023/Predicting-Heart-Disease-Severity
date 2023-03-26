@@ -31,13 +31,13 @@ web_data <- function(place, url){
     select(-ST_dep, -slope) %>%
     select(place, everything())
   if (place == 'switzerland'){
-    location = '../data/raw/switzerland.csv'
+    location = 'data/raw/switzerland.csv'
   }else if(place =='va'){
-    location = '../data/raw/va.csv'
+    location = 'data/raw/va.csv'
   }else if(place == 'cleveland'){
-    location = '../data/raw/cleveland.csv'
+    location = 'data/raw/cleveland.csv'
   }else{
-    location = '../data/raw/hungary.csv'
+    location = 'data/raw/hungary.csv'
   }
   write_csv(data, location)
 }

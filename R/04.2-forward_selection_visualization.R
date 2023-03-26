@@ -3,6 +3,9 @@
 # produces a png file of line chart visualization
 # will be saved to '../figures/forward_visualization.png'
 
+library(tidyverse)
+library(ggplot2)
+
 # reading file created in 04.1
 accuracies <- read_csv('data/modelling/forward_selection_data.csv')
 

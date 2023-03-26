@@ -3,6 +3,8 @@
 # produces major classifier results as csv file
 # will be saved inside data/modelling
 
+source('R/joining_data.R')
+
 # reading files created in 05 script
 heart_training <- clean_csv('data/modelling/training_split_new.csv')
 

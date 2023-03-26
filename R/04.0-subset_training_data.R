@@ -3,6 +3,7 @@
 
 # produces a csv file inside data/modelling
 
+source('R/joining_data.R')
 
 # reading file created in 03
 heart_training <- clean_csv('data/modelling/training_split.csv')

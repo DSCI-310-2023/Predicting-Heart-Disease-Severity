@@ -1,5 +1,6 @@
 library(caret)
 library(ggplot2)
+library(tidymodels)
 #' Testing accuracy of model
 #' 
 #' @param data is the predicted data of our classifier

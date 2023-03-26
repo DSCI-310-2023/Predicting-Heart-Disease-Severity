@@ -2,15 +2,19 @@
 # takes in data from 07.2 script (rds file)
 
 set.seed(1)
+library(tidymodels)
+source('R/joining_data.R')
+
+heart_testing <- clean_csv('data/modelling/testing_data_new.csv')
 
 # reads the final heart data workflow saved in the data folder 
 heart_data_final_fit <- readRDS('data/heart_data_final_workflow.rds')
 
 # Testing our classifier using the testing set
-heart_data_summary<-heart_data_final_fit%>%
-  predict(heart_testing)%>%
-  bind_cols(heart_testing)%>%
-  metrics(truth=diagnosis_f, estimate=.pred_class)%>%
+heart_data_summary<-heart_data_final_fit %>%
+  predict(heart_testing) %>%
+  bind_cols(heart_testing )%>%
+  metrics(truth=diagnosis_f, estimate=.pred_class) %>%
   filter(.metric == 'accuracy')
 heart_data_summary
 
