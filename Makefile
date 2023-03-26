@@ -1,5 +1,12 @@
 
-all: data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training_split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
+
+.PHONY: all
+all: change_dir data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training_split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
+
+# change directory
+.PHONY: change_dir
+change_dir:
+	cd notebooks
 
 # download raw data
 data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv: R/01-loading.R	
@@ -10,7 +17,7 @@ data/processed/heart_data.csv: R/02-build_heart_data.R
 	Rscript R/02-build_heart_data.R --input_dir="data/raw/" --out_dir="data/processed/"
 
 # build visualizaton based on heart data
-figures/boxplot.png: R/02.1-intial_visualization.R
+figures/boxplot.png: R/02.1-initial_visualization.R
 	Rscript R/02.1-intial_visualization.R --input_path="data/processed/heart_data.csv" --out_dir="figures/boxplot.png"
 
 # split training and testing data
@@ -41,8 +48,8 @@ data/modelling/majority_classifier.csv: R/06.0-majority_classifier.R
 
 # build major classifier visualization
 
-figures/majority_classifier_vis.png: R/06.1-major_classifier_visualization.R
-	Rscript R/06.1-major_classifier_visualization.R --input_path="R/majority_classifier_function.R" --out_dir="figures/majority_classifier_vis.png"
+figures/majority_classifier_vis.png: R/06.1-majority_classifier_visualization.R
+	Rscript R/06.1-majority_classifier_visualization.R --input_path="R/majority_classifier_function.R" --out_dir="figures/majority_classifier_vis.png"
 
 # building classification model
 data/modelling/training_split_new.csv: R/07.0-build_classification_model.R
@@ -67,6 +74,7 @@ figures/confusion_matrix.png: R/08.1-build_confusion_matrix.R
 
 
 # clean all data and figures
+.PHONY: clean
 clean:
 	rm -rf data/modelling/
 	rm -rf data/processed/
