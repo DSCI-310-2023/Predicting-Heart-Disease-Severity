@@ -1,5 +1,5 @@
 
-all: data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training-split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
+all: data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training_split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
 
 # download raw data
 data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv: R/01-loading.R	
@@ -32,12 +32,12 @@ figures/classifier_accuracies.png: R/04.2-forward_selection_visualization.R
 	Rscript R/04.2-forward_selection_visualization.R --input_path="data/modelling/forward_selection_data.csv" --out_dir="figures/classifier_accuracies.png"
 
 # build new training and testing data based on previous
-data/modelling/training-split_new.csv data/modelling/testing-data_new.csv: R/05-data_tidying.R
+data/modelling/training_split_new.csv data/modelling/testing-data_new.csv: R/05-data_tidying.R
 	Rscript R/05-data_tidying.R --input_dir="data/modelling/" --out_dir="data/modelling/"
 
 # create dataset for majority classifier based on new training data
 data/modelling/majority_classifier.csv: R/06.0-majority_classifier.R
-	Rscript R/06.0-majority_classifier.R --input_dir="data/modelling/training-split_new.csv" --out_dir="data/modelling/majority_classifier.csv" 
+	Rscript R/06.0-majority_classifier.R --input_dir="data/modelling/training_split_new.csv" --out_dir="data/modelling/majority_classifier.csv" 
 
 # build major classifier visualization
 
