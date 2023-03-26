@@ -4,7 +4,7 @@
 # will be saved inside data/modelling
 
 # reading files created in 05 script
-heart_training <- clean_csv('../data/modelling/training-split_new.csv')
+heart_training <- clean_csv('../data/modelling/training_split_new.csv')
 
 set.seed(1)
 

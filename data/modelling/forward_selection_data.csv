@@ -1,0 +1,6 @@
+size,model_string,accuracy
+1,diagnosis_f ~ max_heart_rate,0.4395732719909173
+2,diagnosis_f ~ max_heart_rate+rest_bp,0.7621854741987171
+3,diagnosis_f ~ max_heart_rate+rest_bp+sex,0.7696538286290968
+4,diagnosis_f ~ max_heart_rate+rest_bp+sex+age,0.7647487653379575
+5,diagnosis_f ~ max_heart_rate+rest_bp+sex+age+chest_pain,0.7523391267837407

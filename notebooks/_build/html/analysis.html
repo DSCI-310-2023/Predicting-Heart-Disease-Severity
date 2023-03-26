@@ -375,75 +375,23 @@ document.write(`
 <p><strong>We are asking: are age (<code class="docutils literal notranslate"><span class="pre">age</span></code>), maximum heart rate (<code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>), and resting blood pressure (<code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>) good at predicting the severity of heart disease in a patient? Based on literature research, we predict that age, maximum heart rate, and resting blood pressure will contribute to the different degrees of heart disease (ranging from 0 being healthy to 4 being the most severe heart cases).</strong></p>
 <p>The data we will use comes from “processed.switzerland.data,” “processed.cleveland.data,” “processed.hungarian.data” and “processed.va.data” provided in the Heart Disease dataset <span id="id2">[<a class="reference internal" href="#id12" title="Dheeru Dua and Casey Graff. (uci) machine learning repository. 2017. URL: http://archive.ics.uci.edu/ml.">Dua and Graff, 2017</a>]</span>. It was collected from the clinical and noninvasive test results of 143 patients undergoing angiography at the University Hospitals in Zurich and Basel, 303 patients undergoing angiography at the Cleveland Clinic in Cleveland, Ohio, 425 patients undergoing angiography at the Hungarian Institute of Cardiology in Bupadepest and 200 patients undergoing angiography at the Veterans Administration Medical Center in Long Beach, California <span id="id3">[<a class="reference internal" href="#id11" title="Robert Detrano, Andras Janosi, Walter Steinbrunn, Matthias Pfisterer, Johann-Jakob Schmid, Sarbjit Sandhu, Kern H. Guppy, Stella Lee, and Victor Froelicher. International application of a new probability algorithm for the diagnosis of coronary artery disease. The American Journal of Cardiology, 64(5):304–-310, 1989. doi:10.1016/0002-9149(89)90524-9.">Detrano <em>et al.</em>, 1989</a>]</span>.</p>
 <p>Below are the packages we loaded to complete our data analysis:</p>
-<div class="cell docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">source</span><span class="p">(</span><span class="s">&#39;../tests/tests.R&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.2 ──
-</pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.6      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.5 
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.8      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.10
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.2.1      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.1 
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.1.3      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.2 
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">readr</span>::<span class=" -Color -Color-Green">edition_get()</span>   masks <span class=" -Color -Color-Blue">testthat</span>::edition_get()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>        masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">purrr</span>::<span class=" -Color -Color-Green">is_null()</span>       masks <span class=" -Color -Color-Blue">testthat</span>::is_null()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>           masks <span class=" -Color -Color-Blue">stats</span>::lag()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">readr</span>::<span class=" -Color -Color-Green">local_edition()</span> masks <span class=" -Color -Color-Blue">testthat</span>::local_edition()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">matches()</span>       masks <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Test passed</span> 😸
-<span class=" -Color -Color-Green">Test passed</span> 😸
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────── tidymodels 1.0.0 ──
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">broom       </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">rsample     </span> 1.1.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dials       </span> 1.1.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tune        </span> 1.0.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">infer       </span> 1.0.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflows   </span> 1.1.2
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">modeldata   </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflowsets</span> 1.0.0
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">parsnip     </span> 1.0.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">yardstick   </span> 1.1.0
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">recipes     </span> 1.0.4     
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ───────────────────────────────────────── tidymodels_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">scales</span>::<span class=" -Color -Color-Green">discard()</span>  masks <span class=" -Color -Color-Blue">purrr</span>::discard()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>    masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">fixed()</span>   masks <span class=" -Color -Color-Blue">stringr</span>::fixed()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">purrr</span>::<span class=" -Color -Color-Green">is_null()</span>   masks <span class=" -Color -Color-Blue">testthat</span>::is_null()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>       masks <span class=" -Color -Color-Blue">stats</span>::lag()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">rsample</span>::<span class=" -Color -Color-Green">matches()</span> masks <span class=" -Color -Color-Blue">dplyr</span>::matches(), <span class=" -Color -Color-Blue">tidyr</span>::matches(), <span class=" -Color -Color-Blue">testthat</span>::matches()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">yardstick</span>::<span class=" -Color -Color-Green">spec()</span>  masks <span class=" -Color -Color-Blue">readr</span>::spec()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">step()</span>    masks <span class=" -Color -Color-Blue">stats</span>::step()
-<span class=" -Color -Color-Blue">•</span> Dig deeper into tidy modeling with R at <span class=" -Color -Color-Green">https://www.tmwr.org</span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">414</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">6</span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
-<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
-<span class=" -Color -Color-Green">dbl</span> (6): diagnosis_f, age, rest_bp, max_heart_rate, chest_pain, sex
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
-<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 01 R SCRIPT</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">repr</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
@@ -461,98 +409,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching packages</span> ─────────────────────────────────────── tidyverse 1.3.2 ──
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2</span> 3.3.6      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr  </span> 0.3.5 
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble </span> 3.1.8      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr  </span> 1.0.10
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr  </span> 1.2.1      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr</span> 1.4.1 
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr  </span> 2.1.3      <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats</span> 0.5.2 
-── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
-── <span class=" -Color -Color-Bold">Attaching packages</span> ────────────────────────────────────── tidymodels 1.0.0 ──
-
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">broom       </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">rsample     </span> 1.1.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dials       </span> 1.1.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tune        </span> 1.0.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">infer       </span> 1.0.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflows   </span> 1.1.2
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">modeldata   </span> 1.0.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">workflowsets</span> 1.0.0
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">parsnip     </span> 1.0.3     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">yardstick   </span> 1.1.0
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">recipes     </span> 1.0.4     
-
-── <span class=" -Color -Color-Bold">Conflicts</span> ───────────────────────────────────────── tidymodels_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">scales</span>::<span class=" -Color -Color-Green">discard()</span> masks <span class=" -Color -Color-Blue">purrr</span>::discard()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span>   masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">fixed()</span>  masks <span class=" -Color -Color-Blue">stringr</span>::fixed()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>      masks <span class=" -Color -Color-Blue">stats</span>::lag()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">yardstick</span>::<span class=" -Color -Color-Green">spec()</span> masks <span class=" -Color -Color-Blue">readr</span>::spec()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">recipes</span>::<span class=" -Color -Color-Green">step()</span>   masks <span class=" -Color -Color-Blue">stats</span>::step()
-<span class=" -Color -Color-Blue">•</span> Use <span class=" -Color -Color-Green">tidymodels_prefer()</span> to resolve common conflicts.
-
-Loading required package: lattice
-
-
-Attaching package: ‘caret’
-
-
-The following objects are masked from ‘package:yardstick’:
-
-    precision, recall, sensitivity, specificity
-
-
-The following object is masked from ‘package:purrr’:
-
-    lift
-
-
-
-Attaching package: ‘e1071’
-
-
-The following object is masked from ‘package:tune’:
-
-    tune
-
-
-The following object is masked from ‘package:rsample’:
-
-    permutations
-
-
-The following object is masked from ‘package:parsnip’:
-
-    tune
-
-
-
-Attaching package: ‘testthat’
-
-
-The following object is masked from ‘package:rsample’:
-
-    matches
-
-
-The following object is masked from ‘package:dplyr’:
-
-    matches
-
-
-The following object is masked from ‘package:purrr’:
-
-    is_null
-
-
-The following objects are masked from ‘package:readr’:
-
-    edition_get, local_edition
-
-
-The following object is masked from ‘package:tidyr’:
-
-    matches
-</pre></div>
-</div>
-</div>
+</details>
 </div>
 </section>
 <section id="preliminary-exploratory-data-analysis">
@@ -560,29 +417,14 @@ The following object is masked from ‘package:tidyr’:
 <p>We combined the datasets “processed.switzerland.data,” “processed.va.data”, “processed.cleveland.data,” and “processed.hungarian.data”, to generate a longer and more complete dataset. Our complete aggregated data contains 13 different columns with an additional 8 that repeat some of the variables as factors instead of numeric types. Based on initial viewing of the data we decided to eliminate the <code class="docutils literal notranslate"><span class="pre">ST_dep</span></code> and <code class="docutils literal notranslate"><span class="pre">slope</span></code> columns as they were missing too many points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_csv</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 02 R SCRIPT</span>
+
+
+<span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_csv</span><span class="p">()</span>
 <span class="n">heart_data</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 720 × 21</caption>
-<thead>
-	<tr><th scope=col>place</th><th scope=col>age</th><th scope=col>sex</th><th scope=col>chest_pain</th><th scope=col>rest_bp</th><th scope=col>cholestoral_mmHg</th><th scope=col>fasting_bs</th><th scope=col>rest_ECG</th><th scope=col>max_heart_rate</th><th scope=col>exercise</th><th scope=col>⋯</th><th scope=col>thal</th><th scope=col>diagnosis</th><th scope=col>sex_f</th><th scope=col>chest_pain_f</th><th scope=col>fasting_bs_f</th><th scope=col>rest_ECG_f</th><th scope=col>exercise_f</th><th scope=col>major_vessels_f</th><th scope=col>thal_f</th><th scope=col>diagnosis_f</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>hungary</td><td>63</td><td>1</td><td>4</td><td>140</td><td>260</td><td>0</td><td>1</td><td>112</td><td>1</td><td>⋯</td><td>NA</td><td>2</td><td>1</td><td>4</td><td>0</td><td>1</td><td>1</td><td>NA</td><td>NA</td><td>2</td></tr>
-	<tr><td>hungary</td><td>44</td><td>1</td><td>4</td><td>130</td><td>209</td><td>0</td><td>1</td><td>127</td><td>0</td><td>⋯</td><td>NA</td><td>0</td><td>1</td><td>4</td><td>0</td><td>1</td><td>0</td><td>NA</td><td>NA</td><td>0</td></tr>
-	<tr><td>hungary</td><td>60</td><td>1</td><td>4</td><td>132</td><td>218</td><td>0</td><td>1</td><td>140</td><td>1</td><td>⋯</td><td>NA</td><td>2</td><td>1</td><td>4</td><td>0</td><td>1</td><td>1</td><td>NA</td><td>NA</td><td>2</td></tr>
-	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
-	<tr><td>switzerland</td><td>72</td><td>1</td><td>3</td><td>160</td><td>0</td><td>NA</td><td>2</td><td>114</td><td>0</td><td>⋯</td><td>NA</td><td>0</td><td>1</td><td>3</td><td>NA</td><td>2</td><td>0</td><td>2 </td><td>NA</td><td>0</td></tr>
-	<tr><td>switzerland</td><td>73</td><td>0</td><td>3</td><td>160</td><td>0</td><td> 0</td><td>1</td><td>121</td><td>0</td><td>⋯</td><td> 3</td><td>1</td><td>0</td><td>3</td><td>0 </td><td>1</td><td>0</td><td>NA</td><td>3 </td><td>1</td></tr>
-	<tr><td>switzerland</td><td>74</td><td>1</td><td>2</td><td>145</td><td>0</td><td>NA</td><td>1</td><td>123</td><td>0</td><td>⋯</td><td>NA</td><td>1</td><td>1</td><td>2</td><td>NA</td><td>1</td><td>0</td><td>NA</td><td>NA</td><td>1</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 1.</strong></em> <em>All columns with all data from the four heart disease data sets.</em></style></p>
 <section id="training-and-testing-set">
@@ -591,7 +433,10 @@ The following object is masked from ‘package:tidyr’:
 <p>We set the seed with the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function in order to make the randomized processes throughout our analysis reproducible. A seed is a numerical starting value, which determines the sequence of random numbers R will generate. Throughout the analysis the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function will be at the top of each cell that completes a randomizing action.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Splitting data into training and testing sets</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 03 R SCRIPT</span>
+
+
+<span class="c1"># Splitting data into training and testing sets</span>
 <span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
 <span class="n">heart_split</span><span class="o">&lt;-</span><span class="nf">initial_split</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="o">=</span><span class="m">0.75</span><span class="p">,</span><span class="w"> </span><span class="n">strata</span><span class="o">=</span><span class="n">diagnosis_f</span><span class="p">)</span>
 <span class="n">heart_training</span><span class="o">&lt;-</span><span class="nf">training</span><span class="p">(</span><span class="n">heart_split</span><span class="p">)</span>
@@ -622,7 +467,9 @@ The following object is masked from ‘package:tidyr’:
 <h2><a class="toc-backref" href="#id23">Initial Visualizations of Predictors</a><a class="headerlink" href="#initial-visualizations-of-predictors" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boxplot visualizations for each of our predictors and heart diagnosis</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># SCRIPTED IN 02.1-INITIAL_VISUALIZATION.R</span>
+
+<span class="c1"># Boxplot visualizations for each of our predictors and heart diagnosis</span>
 <span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;../data/processed/heart_data.csv&#39;</span><span class="p">)</span>
 
 <span class="w">    </span>
@@ -635,16 +482,6 @@ The following object is masked from ‘package:tidyr’:
 <span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;../figures/boxplot.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-“Removed 170 rows containing non-finite values (stat_boxplot).”
-Warning message:
-“Removed 160 rows containing non-finite values (stat_boxplot).”
-Saving 7 x 7 in image
-</pre></div>
-</div>
-<img alt="_images/4dc156ac66aec864db42e201aff22cab538b4aeb1c10b2faa8b892d7c29f5a1b.png" src="_images/4dc156ac66aec864db42e201aff22cab538b4aeb1c10b2faa8b892d7c29f5a1b.png" />
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Figure 1.</strong></em></style></p>
@@ -681,22 +518,6 @@ Saving 7 x 7 in image
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 5 × 3</caption>
-<thead>
-	<tr><th scope=col>size</th><th scope=col>model_string</th><th scope=col>accuracy</th></tr>
-	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>1</td><td>diagnosis_f ~ max_heart_rate                           </td><td>0.4462406</td></tr>
-	<tr><td>2</td><td>diagnosis_f ~ max_heart_rate+rest_bp                   </td><td>0.7610736</td></tr>
-	<tr><td>3</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain        </td><td>0.7658033</td></tr>
-	<tr><td>4</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain+sex    </td><td>0.7680744</td></tr>
-	<tr><td>5</td><td>diagnosis_f ~ max_heart_rate+rest_bp+chest_pain+sex+age</td><td>0.7611596</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 2.</strong></em> <em>Forward selection results</em></style></p>
 <p>From Table 2. above, we can see that the accuracy increases with every added predictor. To make this result more clear, a visualization of accuracy compared to the number of predictors is included below.</p>
@@ -717,9 +538,6 @@ Saving 7 x 7 in image
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/16b69e5237f0cb2b9b7b41d1613f3159cd250aa9e8182e5564242bd3fa7b1b94.png" src="_images/16b69e5237f0cb2b9b7b41d1613f3159cd250aa9e8182e5564242bd3fa7b1b94.png" />
-</div>
 </div>
 <p><span style="color:gray"><em><strong>Figure 2.</strong></em></style></p>
 <p>Figure 2. shows us that all five of our predictors increase the estimated accuracy of our classifier. However we can also see that the accuracy plateau’s at the fourth and fifth predictor (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code>).</p>
@@ -738,35 +556,17 @@ Saving 7 x 7 in image
 <span class="n">heart_training</span>
 
 <span class="c1"># Adding training set to directory</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_training</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/training-split.csv&#39;</span><span class="p">)</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_training</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/training_split.csv&#39;</span><span class="p">)</span>
 
 <span class="n">heart_testing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_testing</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">diagnosis_f</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
 
 <span class="c1"># Adding testing set to directory</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/testing-data.csv&#39;</span><span class="p">)</span>
+<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/testing_split.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 414 × 4</caption>
-<thead>
-	<tr><th scope=col>rest_bp</th><th scope=col>age</th><th scope=col>max_heart_rate</th><th scope=col>diagnosis_f</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>130</td><td>44</td><td>127</td><td>0</td></tr>
-	<tr><td>110</td><td>66</td><td> 99</td><td>0</td></tr>
-	<tr><td>170</td><td>63</td><td> 84</td><td>4</td></tr>
-	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
-	<tr><td>145</td><td>65</td><td> 67</td><td>3</td></tr>
-	<tr><td>160</td><td>65</td><td>122</td><td>3</td></tr>
-	<tr><td>140</td><td>70</td><td>157</td><td>3</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 3.</strong></em> <em>Tidied data set containing our selected predictors we will use to determine the severity of heart disease in an individual</em></style></p>
 </section>
@@ -798,22 +598,6 @@ Saving 7 x 7 in image
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 5 × 3</caption>
-<thead>
-	<tr><th scope=col>diagnosis_f</th><th scope=col>percent_outcomes</th><th scope=col>number</th></tr>
-	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>1</td><td>31.159420</td><td> 78</td></tr>
-	<tr><td>2</td><td>22.946860</td><td>129</td></tr>
-	<tr><td>3</td><td>21.497585</td><td> 95</td></tr>
-	<tr><td>0</td><td>18.840580</td><td> 89</td></tr>
-	<tr><td>4</td><td> 5.555556</td><td> 23</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 4.</strong></em> <em>Majority classifier showing the number of people with each severity level of heart disease in the training set</em></style></p>
 <div class="cell docutils container">
@@ -821,9 +605,6 @@ Saving 7 x 7 in image
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">majority_classifier_vis_function</span><span class="p">(</span><span class="n">majority_classifier</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/2503ad662a94eb0c48b13ddae67f25d378d56f6d7ebb5b5c552bb8a29eba9097.png" src="_images/2503ad662a94eb0c48b13ddae67f25d378d56f6d7ebb5b5c552bb8a29eba9097.png" />
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Figure 3.</strong></em></style></p>
@@ -849,24 +630,6 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 21 × 7</caption>
-<thead>
-	<tr><th scope=col>neighbors</th><th scope=col>.metric</th><th scope=col>.estimator</th><th scope=col>mean</th><th scope=col>n</th><th scope=col>std_err</th><th scope=col>.config</th></tr>
-	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>1</td><td>accuracy</td><td>multiclass</td><td>0.7494234</td><td>5</td><td>0.02120650</td><td>Preprocessor1_Model01</td></tr>
-	<tr><td>2</td><td>accuracy</td><td>multiclass</td><td>0.7494234</td><td>5</td><td>0.02120650</td><td>Preprocessor1_Model02</td></tr>
-	<tr><td>3</td><td>accuracy</td><td>multiclass</td><td>0.5998924</td><td>5</td><td>0.02483969</td><td>Preprocessor1_Model03</td></tr>
-	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
-	<tr><td>19</td><td>accuracy</td><td>multiclass</td><td>0.3357444</td><td>5</td><td>0.01359131</td><td>Preprocessor1_Model19</td></tr>
-	<tr><td>20</td><td>accuracy</td><td>multiclass</td><td>0.3429446</td><td>5</td><td>0.01034037</td><td>Preprocessor1_Model20</td></tr>
-	<tr><td>21</td><td>accuracy</td><td>multiclass</td><td>0.3302395</td><td>5</td><td>0.01992470</td><td>Preprocessor1_Model21</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 5.</strong></em> <em>Parameter values that help select a k value</em></style></p>
 <p>To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
@@ -877,9 +640,6 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <span class="nf">knn_visualization</span><span class="p">(</span><span class="n">heart_data_accuracies</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/780e81e7bc9e83cb2153adcb23ce10a36b53d7bfb7f99dbdef66cc21a816dcf9.png" src="_images/780e81e7bc9e83cb2153adcb23ce10a36b53d7bfb7f99dbdef66cc21a816dcf9.png" />
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Figure 4.</strong></em></style></p>
@@ -948,18 +708,6 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 1 × 3</caption>
-<thead>
-	<tr><th scope=col>.metric</th><th scope=col>.estimator</th><th scope=col>.estimate</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>accuracy</td><td>multiclass</td><td>0.8308824</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <p><span style="color:gray"><em><strong>Table 6.</strong></em> <em>Model accuracy with testing set</em></style></p>
 <p>The accuracy is a reasonable number that shows that even though our predictors within our model produce a strange <span class="math notranslate nohighlight">\(K\)</span>-nearest neighbour graph, we still built a model that will diagnose patients with ~80% accuracy.</p>
@@ -974,13 +722,6 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">heart_data_predict</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scale for &#39;fill&#39; is already present. Adding another scale for &#39;fill&#39;, which
-will replace the existing scale.
-</pre></div>
-</div>
-<img alt="_images/e6edf3672006230573458b2baddf9cb9591a3ff1913e74a2da01887f25e87ddf.png" src="_images/e6edf3672006230573458b2baddf9cb9591a3ff1913e74a2da01887f25e87ddf.png" />
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Figure 5.</strong></em></style></p>

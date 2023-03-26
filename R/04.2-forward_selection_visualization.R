@@ -4,7 +4,7 @@
 # will be saved to '../figures/forward_visualization.png'
 
 # reading file created in 04.1
-accuracies <- clean_csv('../data/modelling/forward_selection_data.csv')
+accuracies <- read_csv('../data/modelling/forward_selection_data.csv')
 
 # visualization of number of predictors and accuracy based on forward selection
 options(repr.plot.width = 7, repr.plot.height = 7)

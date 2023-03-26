@@ -6,7 +6,8 @@
 source('../R/classification_model.R')
 
 # build the table and classifies it
-heart_data_accuracies <- classifier('../data/modelling/training_split.csv')
+heart_data_accuracies <- classifier(clean_csv('../data/modelling/training_split_new.csv'))
 
 # writes png to figures folder
-write_table(heart_data_accuracies, '../figures/classification_model.csv')
+# write_table(heart_data_accuracies, '../figures/classification_model.csv')
+write_csv(heart_data_accuracies, "../data/modelling/heart_data_accuracies.csv")
