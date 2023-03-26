@@ -4,7 +4,7 @@
 # will be saved to '../figures/forward_visualization.png'
 
 # reading file created in 04.1
-accuracies <- read_csv('../data/modelling/forward_selection_data.csv')
+accuracies <- read_csv('data/modelling/forward_selection_data.csv')
 
 # visualization of number of predictors and accuracy based on forward selection
 options(repr.plot.width = 7, repr.plot.height = 7)
@@ -17,4 +17,4 @@ forward_visualization <- ggplot(accuracies, aes(x = size, y = accuracy)) +
     theme(text = element_text(size = 20)) +
     ylim(c(0,1))
 
-ggsave("../figures/classifier_accuracies.png")
+ggsave("figures/classifier_accuracies.png")

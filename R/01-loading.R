@@ -21,7 +21,7 @@ url_cleveland <- "https://archive.ics.uci.edu/ml/machine-learning-databases/hear
 url_hungarian <- "https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.va.data"
 
 # reading in data off the internet and minor cleaning with functions
-source("../R/place_data.R")
+source("R/place_data.R")
 
 # running the function that reads off the internet:
 # this also saves all the raw data into the directory
