@@ -4,6 +4,15 @@
 # Pulls optimal k and builds a final workflow for classifier
 
 # Pulling optimal K value based on above cross validation
+library(tidymodels)
+source('R/joining_data.R')
+source('R/classification_model.R')
+classifier(clean_csv('data/modelling/training_split_new.csv'))
+
+heart_data_accuracies <- read_csv('data/modelling/heart_data_accuracies.csv')
+
+heart_training <- clean_csv('data/modelling/training_split_new.csv')
+
 set.seed(1)
 best_k<-heart_data_accuracies%>%
   arrange(desc(mean))%>%
@@ -27,4 +36,4 @@ heart_data_final_fit<-workflow()%>%
 #heart_data_final_fit
 
 # saves the workflow as an rds file to data folder
-saveRDS(heart_data_final_fit, '../data/heart_data_final_workflow.rds')
+saveRDS(heart_data_final_fit, 'data/heart_data_final_workflow.rds')

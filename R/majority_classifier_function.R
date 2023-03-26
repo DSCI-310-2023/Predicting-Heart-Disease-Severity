@@ -18,7 +18,7 @@ library(ggplot2)
 #' majority_classifier_vis_function(diff_data_set1, hgraph = 4, wGraph = 10, colWidth = 1)
 majority_classifier_vis_function <- function(data, hGraph = 5, wGraph = 7, textSize = 20, colWidth = 0.5, xLabel = 'Heart disease degree of severity', yLabel = 'Percent of outcomes \n in training dataset', titleLabel = 'Label proportions of classifier in dataset'){
     options(repr.plot.height = hGraph, repr.plot_width = wGraph)
-
+    total_rows <- nrow(read_csv('data/modelling/training_split_new.csv'))
     majority_classifier_vis <- data %>%
         mutate(percent_outcomes=percent_outcomes/100)%>%
         ggplot(aes(x = reorder(diagnosis_f,-percent_outcomes), y=percent_outcomes)) +
