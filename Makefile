@@ -1,3 +1,4 @@
+
 all: data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training-split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
 
 # download raw data
@@ -13,7 +14,9 @@ figures/boxplot.png: R/02.1-intial_visualization.R
 	Rscript R/02.1-intial_visualization.R --input_path="data/processed/heart_data.csv" --out_dir="figures/boxplot.png"
 
 # split training and testing data
+
 data/modelling/training_split.csv data/modelling/testing_split.csv: R/03-data_splitting.R
+
 	Rscript R/03-data_splitting.R --input_dir="data/processed/heart_data.csv" --out_dir="data/modelling/"
 
 # create subset of training data
@@ -37,6 +40,7 @@ data/modelling/majority_classifier.csv: R/06.0-majority_classifier.R
 	Rscript R/06.0-majority_classifier.R --input_dir="data/modelling/training-split_new.csv" --out_dir="data/modelling/majority_classifier.csv" 
 
 # build major classifier visualization
+
 figures/majority_classifier_vis.png: R/06.1-major_classifier_visualization.R
 	Rscript R/06.1-major_classifier_visualization.R --input_path="R/majority_classifier_function.R" --out_dir="figures/majority_classifier_vis.png"
 
@@ -60,10 +64,14 @@ data/modelling/predict_data.csv: R/08.0-test_classifier.R
 figures/confusion_matrix.png: R/08.1-build_confusion_matrix.R
 	Rscript R/08.1-build_confusion_matrix.R --input_path="data/modelling/predict_data.csv" --out_path="figures/confusion_matrix.png"
 
+
+
 # clean all data and figures
 clean:
 	rm -rf data/modelling/
 	rm -rf data/processed/
 	rm -rf data/raw/
 	rm -rf figures/
+
 	rm -rf data/heart_data_final_workflow.rds
+

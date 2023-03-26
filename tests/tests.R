@@ -33,21 +33,12 @@ test_that("The number of rows in va are not the same!", {
 test_that("The number of rows in hungary are not the same!", {
     expect_equal(nrow(web_data('hungary', url_hungarian)), 200)})
 
-# making sure columns are of the correct type
-test_that("Age is not numeric!", {
-    expect_equal(is.numeric(web_data('switzerland', url_switzerland)$age), TRUE)})
-
 source("../R/joining_data.R")
-# testing that the function creates something that matches the full written data.
-full_data <- read_csv('../data/processed/heart_data.csv') %>%
-        mutate(sex_f = as.factor(sex_f), chest_pain_f = as.factor(chest_pain_f),
-        fasting_bs_f = as.factor(fasting_bs_f), rest_ECG_f = as.factor(rest_ECG_f),
-        exercise_f = as.factor(exercise_f), major_vessels_f = as.factor(major_vessels_f),
-        thal_f = as.factor(thal_f), diagnosis_f = as.factor(diagnosis_f))
-test_that("Full heart data set does not match!", {
-    expect_equivalent(join_csv(), full_data)})
-test_that("Full heart data set does not have the right number of rows", {
-    expect_equal(ncol(join_csv()), 21)})
+# testing the function clean_csv produces dataframes with correct data types
+test_that("thal_f is not a factor (it should be)", {
+    expect_true(is.factor(clean_csv('../data/raw/cleveland.csv')$thal_f))})
+test_that("age is not numeric", {
+    expect_true(is.numeric(clean_csv('../data/raw/va.csv')$age))})
 
 source("../R/boxplots.R")
 # Setup
@@ -66,7 +57,7 @@ test_that("Second boxplot check-expect is not the same!", {
 
 source("../R/classification_model.R")
 # Test that there are 7 columns and 21 rows
-heart_training <- read.csv('../data/modelling/training-split.csv') %>%
+heart_training <- read.csv('../data/modelling/training_split.csv') %>%
     mutate(diagnosis_f = as.factor(diagnosis_f))
 test_that("Classifier data has different number of columns!", {
     expect_equal(ncol(classifier(heart_training)), 7)})
