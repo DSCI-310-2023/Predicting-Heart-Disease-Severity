@@ -1,5 +1,4 @@
 
-
 .PHONY: all
 all: 
 	make data/raw data/modelling data/processed data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv 
@@ -87,3 +86,7 @@ clean:
 	rm -rf figures/
 	rm -rf data/heart_data_final_workflow.rds
 
+
+# build jupyter book into html
+notebooks/_build/html/analysis.html: all
+	jb build notebooks/
