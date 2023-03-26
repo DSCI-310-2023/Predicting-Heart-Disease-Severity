@@ -16,7 +16,7 @@ data/processed/heart_data.csv: R/02-build_heart_data.R
 	Rscript R/02-build_heart_data.R --input_dir="data/raw/" --out_dir="data/processed/"
 
 # build visualizaton based on heart data
-figures/boxplot.png: R/02.1-intial_visualization.R
+figures/boxplot.png: R/02.1-initial_visualization.R
 	Rscript R/02.1-intial_visualization.R --input_path="data/processed/heart_data.csv" --out_dir="figures/boxplot.png"
 
 # split training and testing data
