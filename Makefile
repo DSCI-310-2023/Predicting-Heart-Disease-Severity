@@ -1,4 +1,5 @@
 
+
 .PHONY: all
 all: 
 	make data/raw data/modelling data/processed data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv 
@@ -13,7 +14,7 @@ data/raw data/modelling data/processed:
 	mkdir data/raw
 	mkdir data/modelling
 	mkdir data/processed
-	
+
 # download raw data
 data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv:	
 	Rscript R/01-loading.R 
@@ -52,7 +53,6 @@ data/modelling/majority_classifier.csv: data/modelling/training_split_new.csv
 	Rscript R/06.0-majority_classifier_data.R 
 
 # build major classifier visualization
-
 figures/majority_classifier_vis.png: data/modelling/majority_classifier.csv data/modelling/training_split_new.csv
 	Rscript R/06.1-majority_classifier_visualization.R 
 

@@ -5,6 +5,7 @@ source('R/confusion_matrix.R')
 
 library(tidyverse)
 
+
 # reading data generated from script 08.0
 prediction_data <- read_csv('data/modelling/predict_data.csv') %>%
     mutate(diagnosis_f = as.factor(diagnosis_f),
