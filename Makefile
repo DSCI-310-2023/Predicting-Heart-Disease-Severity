@@ -47,8 +47,8 @@ data/modelling/majority_classifier.csv: R/06.0-majority_classifier.R
 
 # build major classifier visualization
 
-figures/majority_classifier_vis.png: R/06.1-major_classifier_visualization.R
-	Rscript R/06.1-major_classifier_visualization.R --input_path="R/majority_classifier_function.R" --out_dir="figures/majority_classifier_vis.png"
+figures/majority_classifier_vis.png: R/06.1-majority_classifier_visualization.R
+	Rscript R/06.1-majority_classifier_visualization.R --input_path="R/majority_classifier_function.R" --out_dir="figures/majority_classifier_vis.png"
 
 # building classification model
 data/modelling/training_split_new.csv: R/07.0-build_classification_model.R
