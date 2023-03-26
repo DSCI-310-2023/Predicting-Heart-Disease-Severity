@@ -38,6 +38,4 @@ classifier <- function(data, split =5 , gridFrom = 1, gridTo = 21) {
       collect_metrics()
   accuracies <- results %>%
       filter(.metric == "accuracy")
-  write_csv(accuracies, "../data/modelling/heart_data_accuracies.csv")
-  accuracies
 }

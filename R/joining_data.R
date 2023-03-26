@@ -19,7 +19,9 @@ library(tidyverse)
 #'@examples
 #'# clean_csv('../data/raw/cleveland.csv')
 clean_csv <- function(place_csv){
-       read_csv(place_csv, show_col_types = FALSE) %>%
+       data <- read_csv(place_csv, show_col_types = FALSE)
+       if(ncol(data)>7){
+       data %>%
        mutate(sex_f = as.factor(sex), 
        chest_pain_f = as.factor(chest_pain), 
        fasting_bs_f = as.factor(fasting_bs),
@@ -39,4 +41,16 @@ clean_csv <- function(place_csv){
        thal = as.numeric(thal), 
        diagnosis = as.numeric(diagnosis), 
        rest_bp = as.numeric(rest_bp))
+       }else if(ncol(data) > 4){
+              data %>%
+              mutate(rest_bp = as.numeric(rest_bp),
+       age = as.numeric(age),
+       max_heart_rate = as.numeric(max_heart_rate),
+       diagnosis_f = as.factor(diagnosis_f),
+       sex = as.factor(sex),
+       chest_pain = as.numeric(chest_pain))
+       }else{
+       data %>%
+       mutate(diagnosis_f = as.factor(diagnosis_f))
+       }
 }

@@ -6,7 +6,7 @@
 # uses function majority_classifier_vis_function in '../R/majority_classifier_function.R'
 source('../R/majority_classifier_function.R')
 
-majority_classifier <- clean_csv('../data/modelling/majority_classifier.csv')
+majority_classifier <- read_csv('../data/modelling/majority_classifier.csv')
 
 majority_classifier_vis <- majority_classifier_vis_function(majority_classifier)
 

@@ -5,8 +5,11 @@
 
 source('../R/model_visualization.R')
 
+# Reading in data from 07.0
+data <- read_csv("../data/modelling/heart_data_accuracies.csv")
+
 # builds a knn visualization from the classification model from figures folder
-knn_visual <- knn_visualization('../figures/classification_model.csv')
+knn_visual <- knn_visualization(data)
 
 # saves the knn visualization as a png in the figures folder
 ggsave('../figures/classification_model_visualization.png', knn_visual)
