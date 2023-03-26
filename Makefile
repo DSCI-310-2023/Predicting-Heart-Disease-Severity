@@ -1,4 +1,5 @@
 
+.PHONY: all
 all: data/raw/switzerland.csv data/raw/cleveland.csv data/raw/va.csv data/raw/hungary.csv data/processed/heart_data.csv figures/boxplot.png data/modelling/training_split.csv data/modelling/testing_split.csv data/modelling/heart_data_subset.csv data/modelling/forward_selection_data.csv figures/classifier_accuracies.png data/modelling/training-split_new.csv data/modelling/testing-data_new.csv data/modelling/majority_classifier.csv figures/majority_classifier_vis.png data/modelling/training_split_new.csv figures/classification_model_visualization.png data/heart_data_final_workflow.rds data/modelling/predict_data.csv figures/confusion_matrix.png
 
 # download raw data
@@ -67,6 +68,7 @@ figures/confusion_matrix.png: R/08.1-build_confusion_matrix.R
 
 
 # clean all data and figures
+.PHONY: clean
 clean:
 	rm -rf data/modelling/
 	rm -rf data/processed/
