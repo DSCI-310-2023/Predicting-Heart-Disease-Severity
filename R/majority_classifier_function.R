@@ -28,5 +28,4 @@ majority_classifier_vis_function <- function(data, hGraph = 5, wGraph = 7, textS
              title = titleLabel) +
         theme(text = element_text(size = textSize))+
         scale_y_continuous(labels=scales::percent, sec.axis=sec_axis(~.*total_rows,name="Count"))
-    majority_classifier_vis
 }
