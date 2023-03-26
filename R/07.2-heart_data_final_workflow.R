@@ -27,4 +27,4 @@ heart_data_final_fit<-workflow()%>%
 #heart_data_final_fit
 
 # saves the workflow as an rds file to data folder
-saveRDS(heart_data_final_fit, '../data/heart_data_final_workflow.rds')
+saveRDS(heart_data_final_fit, 'data/heart_data_final_workflow.rds')
