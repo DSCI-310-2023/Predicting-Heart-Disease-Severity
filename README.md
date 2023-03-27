@@ -24,6 +24,8 @@ The full report can be found [here](analysis.ipynb)
 
 The full HTML report can be found [here](notebooks/_build/html/analysis.html)
 
+The full HTML report can be found [here](notebooks/_build//html/analysis.html)
+
 ## Usage
 
 ---
