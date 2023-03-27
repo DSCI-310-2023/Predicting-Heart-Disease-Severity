@@ -22,6 +22,8 @@ The data we used to build our model comes from the processed versions of data fo
 
 The full report can be found [here](analysis.ipynb)
 
+HTML can be built if you run notebooks/_build/html/analysis.html
+
 ## Usage
 
 ---
