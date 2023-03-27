@@ -3,6 +3,8 @@ FROM jupyter/r-notebook:latest
 COPY environment.yml .
 RUN conda env create --file environment.yml
 
+RUN pip install jupyterlab-git
+
 RUN conda init bash
 
 RUN echo "conda activate dsci310-group18" > ~/.bashrc
