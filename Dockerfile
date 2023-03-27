@@ -3,7 +3,7 @@ FROM jupyter/r-notebook:latest
 COPY environment.yml .
 RUN conda env create --file environment.yml
 
-RUN pip install jupyterlab-git
+RUN pip install jupyter
 
 RUN conda init bash
 
