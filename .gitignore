@@ -71,4 +71,4 @@ Footer navigation
 .virtual_documents
 
 # ignore _build
-*/_build/*
+notebooks/_build/*

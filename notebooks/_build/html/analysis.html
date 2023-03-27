@@ -382,35 +382,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 01 R SCRIPT</span>
-
-<span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">repr</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">tidymodels</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">e1071</span><span class="p">)</span>
-<span class="nf">options</span><span class="p">(</span><span class="n">repr.matrix.max.rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">)</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/selection_forward_function.R&quot;</span><span class="p">)</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/majority_classifier_function.R&quot;</span><span class="p">)</span>
-
-<span class="c1"># Reading data off internet to make csv files</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/place_data.R&quot;</span><span class="p">)</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&quot;../R/joining_data.R&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
 </section>
 <section id="preliminary-exploratory-data-analysis">
 <h2><a class="toc-backref" href="#id17">Preliminary Exploratory Data Analysis</a><a class="headerlink" href="#preliminary-exploratory-data-analysis" title="Permalink to this headline">#</a></h2>
@@ -418,10 +389,36 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 02 R SCRIPT</span>
+<span class="n">md_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">){</span>
+<span class="w">    </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">,</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;|&#39;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;|\n|&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">paste</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#39;---&#39;</span><span class="p">,</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;|&#39;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;|\n|&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">           </span><span class="nf">paste</span><span class="p">(</span><span class="nf">Reduce</span><span class="p">(</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">){</span><span class="nf">paste</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;|&#39;</span><span class="p">)},</span><span class="w"> </span><span class="n">df</span><span class="p">),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;|\n|&#39;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;|&#39;</span><span class="p">)</span>
+<span class="p">}</span>
 
+<span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;../data/processed/heart_data.csv&#39;</span><span class="p">)</span>
+<span class="nf">cat</span><span class="p">(</span><span class="nf">md_table</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">heart_data</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">720</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">21</span>
+<span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Red">chr</span>  (1): place
+<span class=" -Color -Color-Green">dbl</span> (20): age, sex, chest_pain, rest_bp, cholestoral_mmHg, fasting_bs, rest_...
 
-<span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">join_csv</span><span class="p">()</span>
-<span class="n">heart_data</span>
+<span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|place|age|sex|chest_pain|rest_bp|cholestoral_mmHg|fasting_bs|rest_ECG|max_heart_rate|exercise|major_vessels|thal|diagnosis|sex_f|chest_pain_f|fasting_bs_f|rest_ECG_f|exercise_f|major_vessels_f|thal_f|diagnosis_f|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|switzerland|32|1|1|95|0|NA|0|127|0|NA|NA|1|1|1|NA|0|0|NA|NA|1|
+|switzerland|34|1|4|115|0|NA|NA|154|0|NA|NA|1|1|4|NA|NA|0|NA|NA|1|
+|switzerland|35|1|4|NA|0|NA|0|130|1|NA|7|3|1|4|NA|0|1|NA|7|3|
+|switzerland|36|1|4|110|0|NA|0|125|1|NA|6|1|1|4|NA|0|1|NA|6|1|
+|switzerland|38|0|4|105|0|NA|0|166|0|NA|NA|2|0|4|NA|0|0|NA|NA|2|
+|switzerland|38|0|4|110|0|0|0|156|0|NA|3|1|0|4|0|0|0|NA|3|1|
 </pre></div>
 </div>
 </div>
@@ -431,20 +428,6 @@ document.write(`
 <h3><a class="toc-backref" href="#id18">Training and Testing Set</a><a class="headerlink" href="#training-and-testing-set" title="Permalink to this headline">#</a></h3>
 <p>Before creating our classification model, we partition the <code class="docutils literal notranslate"><span class="pre">heart_data</span></code> into a training (75%) and testing (25%) set using the <code class="docutils literal notranslate"><span class="pre">tidymodels</span></code> package. In data analysis it is important to split the data right away to ensure that the classifier we build never sees the testing data. We will train the model using only the training set and test it on the test set once we build the <span class="math notranslate nohighlight">\(K\)</span>-nn classifier. We will use the variable <code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code> as our class label as this is what we seek to predict.</p>
 <p>We set the seed with the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function in order to make the randomized processes throughout our analysis reproducible. A seed is a numerical starting value, which determines the sequence of random numbers R will generate. Throughout the analysis the <code class="docutils literal notranslate"><span class="pre">set.seed</span></code> function will be at the top of each cell that completes a randomizing action.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># STEP IN 03 R SCRIPT</span>
-
-
-<span class="c1"># Splitting data into training and testing sets</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">heart_split</span><span class="o">&lt;-</span><span class="nf">initial_split</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">prop</span><span class="o">=</span><span class="m">0.75</span><span class="p">,</span><span class="w"> </span><span class="n">strata</span><span class="o">=</span><span class="n">diagnosis_f</span><span class="p">)</span>
-<span class="n">heart_training</span><span class="o">&lt;-</span><span class="nf">training</span><span class="p">(</span><span class="n">heart_split</span><span class="p">)</span>
-<span class="n">heart_testing</span><span class="o">&lt;-</span><span class="nf">testing</span><span class="p">(</span><span class="n">heart_split</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 <section id="literature-research-on-predictors">
@@ -465,46 +448,32 @@ document.write(`
 </section>
 <section id="initial-visualizations-of-predictors">
 <h2><a class="toc-backref" href="#id23">Initial Visualizations of Predictors</a><a class="headerlink" href="#initial-visualizations-of-predictors" title="Permalink to this headline">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># SCRIPTED IN 02.1-INITIAL_VISUALIZATION.R</span>
-
-<span class="c1"># Boxplot visualizations for each of our predictors and heart diagnosis</span>
-<span class="n">heart_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;../data/processed/heart_data.csv&#39;</span><span class="p">)</span>
-
-<span class="w">    </span>
-<span class="n">boxplot_age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Age (years)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A. Boxplot of degree of heart \n disease in relation to patient&#39;s \nage&quot;</span><span class="p">)</span>
-<span class="n">boxplot_rest_bp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Resting blood pressure (mmHg)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;B. Boxplot of degree of heart \ndisease in relation to patient&#39;s \nresting blood pressure&quot;</span><span class="p">)</span>
-<span class="n">boxplot_max_heart_rate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">grid_boxplot</span><span class="p">(</span><span class="n">heart_data</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Maximum heart rate (BPM)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C. Boxplot of degree of heart \ndisease in relation to patient&#39;s \nmaximum heart rate&quot;</span><span class="p">)</span>
-<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span>
-<span class="n">boxplots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plot_grid</span><span class="p">(</span><span class="n">boxplot_age</span><span class="p">,</span><span class="w"> </span><span class="n">boxplot_rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">boxplot_max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>
-<span class="nf">show</span><span class="p">(</span><span class="n">boxplots</span><span class="p">)</span>
-<span class="nf">ggsave</span><span class="p">(</span><span class="s">&quot;../figures/boxplot.png&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><span style="color:gray"><em><strong>Figure 1.</strong></em></style></p>
-<p>These boxplots in Figure 1. are our inital visualizations to see if there really is a correlation between severity of heart disease and our predictors. From looking at all 3 predictors, Figure 1A. <code class="docutils literal notranslate"><span class="pre">age</span></code>, Figure 1B. <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, and Figure 1C. <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, we can see that there is a range of weakly positive and weakly negative to no relationship between the different diagnosed severities of heart disease (<code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code>)and the predictors.</p>
-<p>Figure 1A. shows there is a slight positive relation between age and heart disease severity, meaning the older a patient is, the more severe their heart disease would be.</p>
-<p>Figure 1B. shows there is no clear relationship between resting blood pressure and how severe a patients heart disease is. All the medians at different levels of severity are relatively level.</p>
-<p>Figure 1C. shows there is a slight negative relationship between maximum heart rate and the severity of heart disease. This means a patient with no heart disease (0) or low severity (1) are able to acheive a higher maximum heart rate. This is because their heart is more healthy and able to pump blood efficiently when compared to a patient with high severity (4) heart disease.</p>
-<p>These visualizations are taken into consideration when making our classification model. We will see if these predictors used together will in fact give an accurate diagnosis for someone being examined for heart disease based on given dataset. We chose to proceed with these predictors because of our literature reseach support. In practice, these predictors are conditions that doctors use to give an <strong>initial diagnosis</strong> of heart disease. Our research question as to whether these predictors work to accurately predict the severity is analysed in the remainder of the project report.</p>
+<figure class="align-default" id="boxplot-img">
+<img alt="_images/boxplot.png" src="_images/boxplot.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Initial visualization comparing degree of heart disease to various factors in the data.</span><a class="headerlink" href="#boxplot-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>These boxplots in <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1</span></a>. are our initial visualizations to see if there really is a correlation between severity of heart disease and our predictors. From looking at all 3 predictors, Figure 1A. <code class="docutils literal notranslate"><span class="pre">age</span></code>, <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1B</span></a>. <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, and <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1C</span></a>. <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, we can see that there is a range of weakly positive and weakly negative to no relationship between the different diagnosed severities of heart disease (<code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code>)and the predictors.</p>
+<p><a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1A</span></a>. shows there is a slight positive relation between age and heart disease severity, meaning the older a patient is, the more severe their heart disease would be.</p>
+<p><a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1B</span></a>. shows there is no clear relationship between resting blood pressure and how severe a patients heart disease is. All the medians at different levels of severity are relatively level.</p>
+<p><a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1C</span></a>. shows there is a slight negative relationship between maximum heart rate and the severity of heart disease. This means a patient with no heart disease (0) or low severity (1) are able to achieve a higher maximum heart rate. This is because their heart is more healthy and able to pump blood efficiently when compared to a patient with high severity (4) heart disease.</p>
+<p>These visualizations are taken into consideration when making our classification model. We will see if these predictors used together will in fact give an accurate diagnosis for someone being examined for heart disease based on given dataset. We chose to proceed with these predictors because of our literature research support. In practice, these predictors are conditions that doctors use to give an <strong>initial diagnosis</strong> of heart disease. Our research question as to whether these predictors work to accurately predict the severity is analyzed in the remainder of the project report.</p>
 </section>
 <section id="forward-selection">
 <h2><a class="toc-backref" href="#id24">Forward Selection</a><a class="headerlink" href="#forward-selection" title="Permalink to this headline">#</a></h2>
-<p>To visualize the effectiveness of our chosen predictors on our data set, we used the process of forward selection. We chose to add this step to confirm that the choices of our predictors will work using this data, as Figure 1. failed to show any significant correlation.</p>
+<p>To visualize the effectiveness of our chosen predictors on our data set, we used the process of forward selection. We chose to add this step to confirm that the choices of our predictors will work using this data, as <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1</span></a> failed to show any significant correlation.</p>
 <p>Forward selection is used to predict accuracy of a classifier that will be made using different predictors to create the model. Based on our literature research detailed above, we will be using forward selection on the variables age, resting blood pressure, and maximum heart rate. We made sure to use our training data set in the forward selection process so that the testing data is never seen by the classifier.</p>
 <p>Additionally we chose to run forward selection on chest pain type (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code>) and sex (<code class="docutils literal notranslate"><span class="pre">sex</span></code>) to get an idea of what our classifier would look like using more variables.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating data subsets for forward selection model using training data</span>
-<span class="n">heart_data_subset</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">chest_pain</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Creating data subsets for forward selection model using training data</span>
+<span class="c1"># heart_data_subset&lt;-heart_training%&gt;%</span>
+<span class="c1">#     select(diagnosis_f, age, rest_bp, max_heart_rate, chest_pain, sex) %&gt;%</span>
+<span class="c1">#     na.omit()</span>
 
-<span class="c1"># heart_data_subset</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_data_subset</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/forward_selection_subset.csv&#39;</span><span class="p">)</span>
+<span class="c1"># # heart_data_subset</span>
+<span class="c1"># write_csv(heart_data_subset, &#39;../data/modelling/forward_selection_subset.csv&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -513,34 +482,21 @@ document.write(`
 <p>Due to the iterative nature of forward selection and the usage of 5 predictors this cell will take a while to run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">accuracies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">forwardSelection</span><span class="p">(</span><span class="n">heart_data_subset</span><span class="p">)</span>
-<span class="n">accuracies</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># accuracies &lt;- forwardSelection(heart_data_subset)</span>
+<span class="c1"># accuracies</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Table 2.</strong></em> <em>Forward selection results</em></style></p>
 <p>From Table 2. above, we can see that the accuracy increases with every added predictor. To make this result more clear, a visualization of accuracy compared to the number of predictors is included below.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualization of number of predictors and accuracy based on forward selection</span>
-<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span>
-<span class="n">forward_visualization</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">(</span><span class="n">accuracies</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accuracy</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Number of predictors used&#39;</span><span class="p">,</span>
-<span class="w">         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Estimated accuracy using forward selection&#39;</span><span class="p">,</span>
-<span class="w">         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;Number of different predictors compared \nto the accuracy of classifier model&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">theme</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
-<span class="w">    </span><span class="nf">ylim</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
-
-<span class="n">forward_visualization</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><span style="color:gray"><em><strong>Figure 2.</strong></em></style></p>
-<p>Figure 2. shows us that all five of our predictors increase the estimated accuracy of our classifier. However we can also see that the accuracy plateau’s at the fourth and fifth predictor (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code>).</p>
+<figure class="align-default" id="forward-img">
+<img alt="_images/classifier_accuracies.png" src="_images/classifier_accuracies.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Accuracy of model based on the number of predictors used to build the model.</span><a class="headerlink" href="#forward-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><a class="reference internal" href="#forward-img"><span class="std std-numref">Figure 2</span></a>. shows us that all five of our predictors increase the estimated accuracy of our classifier. However we can also see that the accuracy plateau’s at the fourth and fifth predictor (<code class="docutils literal notranslate"><span class="pre">chest_pain</span></code> and <code class="docutils literal notranslate"><span class="pre">sex</span></code>).</p>
 <p>According to this visualization our pre-chosen predictors should be accurate predictors for the severity of heart disease. It also tells us that with any more predictors our classifier would not be benefitted and with any less we would have drastically lower accuracy.</p>
 <p>To conclude, we chose resting blood pressure, age and maximum heart rate as our predictors for the severity of heart disease as seen in row 3 of Table 2.</p>
 </section>
@@ -549,21 +505,21 @@ document.write(`
 <p>Now that our indicators <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code> and <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code> to predict <code class="docutils literal notranslate"><span class="pre">diagnosis_f</span></code> have been chosen, we can further tidy our data by eliminating the unused columns. Additionally, all the rows containing NA were removed. Since our data has already been split into training and testing sets we will tidy both of the subsets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selecting chosen predictors within training and testing data</span>
-<span class="n">heart_training</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_training</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">diagnosis_f</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
-<span class="n">heart_training</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Selecting chosen predictors within training and testing data</span>
+<span class="c1"># heart_training &lt;- heart_training %&gt;%</span>
+<span class="c1">#     select(rest_bp, age, max_heart_rate, diagnosis_f) %&gt;%</span>
+<span class="c1">#     na.omit()</span>
+<span class="c1"># heart_training</span>
 
-<span class="c1"># Adding training set to directory</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_training</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/training_split.csv&#39;</span><span class="p">)</span>
+<span class="c1"># # Adding training set to directory</span>
+<span class="c1"># write_csv(heart_training, &#39;../data/modelling/training_split.csv&#39;)</span>
 
-<span class="n">heart_testing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_testing</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">rest_bp</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">max_heart_rate</span><span class="p">,</span><span class="w"> </span><span class="n">diagnosis_f</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">na.omit</span><span class="p">()</span>
+<span class="c1"># heart_testing &lt;- heart_testing %&gt;%</span>
+<span class="c1">#     select(rest_bp, age, max_heart_rate, diagnosis_f) %&gt;%</span>
+<span class="c1">#     na.omit()</span>
 
-<span class="c1"># Adding testing set to directory</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/testing_split.csv&#39;</span><span class="p">)</span>
+<span class="c1"># # Adding testing set to directory</span>
+<span class="c1"># write_csv(heart_testing, &#39;../data/modelling/testing_split.csv&#39;)</span>
 </pre></div>
 </div>
 </div>
@@ -575,40 +531,38 @@ document.write(`
 <p>After selecting our predictors we examined the distribution of our outcome variable. Below, we show the majority classifier data frame which displays the proportion of each outcome found in our training data as well as a visualization to accompany it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># majority classifier and visualization</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">total_rows</span><span class="o">&lt;-</span><span class="nf">nrow</span><span class="p">(</span><span class="n">heart_training</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # majority classifier and visualization</span>
+<span class="c1"># set.seed(1)</span>
+<span class="c1"># total_rows&lt;-nrow(heart_training)</span>
 
-<span class="n">number_of_columns</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">summarize</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="nf">n</span><span class="p">())</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="c1"># number_of_columns&lt;-heart_training%&gt;%</span>
+<span class="c1">#     group_by(diagnosis_f)%&gt;%</span>
+<span class="c1">#     summarize(number=n())%&gt;%</span>
+<span class="c1">#     select(number)</span>
 <span class="w">    </span>
 
-<span class="n">majority_classifier</span><span class="o">&lt;-</span><span class="n">heart_training</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">diagnosis_f</span><span class="p">)</span><span class="o">%&gt;%</span><span class="w">   </span>
-<span class="w">    </span><span class="nf">summarize</span><span class="p">(</span><span class="n">percent_outcomes</span><span class="o">=</span><span class="nf">n</span><span class="p">()</span><span class="o">/</span><span class="n">total_rows</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">     </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">percent_outcomes</span><span class="p">))</span><span class="o">%&gt;%</span>
-<span class="w">     </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">number_of_columns</span><span class="p">)</span>
-<span class="c1">#slice(1)</span>
-<span class="n">majority_classifier</span>
+<span class="c1"># majority_classifier&lt;-heart_training%&gt;%</span>
+<span class="c1">#     group_by(diagnosis_f)%&gt;%   </span>
+<span class="c1">#     summarize(percent_outcomes=n()/total_rows*100)%&gt;%</span>
+<span class="c1">#      arrange(desc(percent_outcomes))%&gt;%</span>
+<span class="c1">#      bind_cols(number_of_columns)</span>
+<span class="c1"># #slice(1)</span>
+<span class="c1"># majority_classifier</span>
 
-<span class="c1"># write csv to data/modelling</span>
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">majority_classifier</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/majority_classifier.csv&#39;</span><span class="p">)</span>
+<span class="c1"># # write csv to data/modelling</span>
+<span class="c1"># write_csv(majority_classifier, &#39;../data/modelling/majority_classifier.csv&#39;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Table 4.</strong></em> <em>Majority classifier showing the number of people with each severity level of heart disease in the training set</em></style></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">majority_classifier_vis_function</span><span class="p">(</span><span class="n">majority_classifier</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><span style="color:gray"><em><strong>Figure 3.</strong></em></style></p>
-<p>Table 4. and Figure 3. give insight into the proportion of patients from the training set with each level of heart disease. The most common diagnosis in our data set is severity 1 with 31%. This value sets a baseline accuracy that our model should exceed to be deemed an acceptable classifier. In other words, if our model can predict more accurately than simply picking the most likely outcome every time, then we are on the right track in terms of accuracy.</p>
+<figure class="align-default" id="class-prop-img">
+<img alt="_images/majority_classifier_vis.png" src="_images/majority_classifier_vis.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Percentage of patients in data that have each level of heart disease severity.</span><a class="headerlink" href="#class-prop-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Table 4. and <a class="reference internal" href="#class-prop-img"><span class="std std-numref">Figure 3</span></a>. give insight into the proportion of patients from the training set with each level of heart disease. The most common diagnosis in our data set is severity 1 with 31%. This value sets a baseline accuracy that our model should exceed to be deemed an acceptable classifier. In other words, if our model can predict more accurately than simply picking the most likely outcome every time, then we are on the right track in terms of accuracy.</p>
 <p>Table 4. also shows us that none of the percent outcomes are over 50%, and the outcomes for severity 1, 2, 3, and 0 are within 15% of each other. This means our data set is distributed evenly enough to build a decent classifier model. Knowing the frequency of each outcome also enables us to set an upper bound on our number of neighbors which is something we will discuss in further detail in subsequent cells.</p>
 </section>
 <section id="classification-model">
@@ -622,39 +576,35 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <p>We will now run a <code class="docutils literal notranslate"><span class="pre">workflow()</span></code> to determine various accuracies found using different <span class="math notranslate nohighlight">\(K\)</span> values. This workflow does the cross-validation work that was described above using our now split training data. This workflow will include our model and recipe that were formed above. We tested <span class="math notranslate nohighlight">\(K\)</span> values from one to twenty-one because this is the lowest frequency of diagnoses (category 4 appeared 21 times in the training set). If we were to use a number of neighbors greater than twenty-one the majority voting used in <span class="math notranslate nohighlight">\(Knn\)</span> classification would be skewed against diagnosis 4.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cross validation to find optimal K value</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/classification_model.R&#39;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Cross validation to find optimal K value</span>
+<span class="c1"># source(&#39;../R/classification_model.R&#39;)</span>
 
-<span class="n">heart_data_accuracies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">classifier</span><span class="p">(</span><span class="n">heart_training</span><span class="p">)</span>
-<span class="n">heart_data_accuracies</span>
+<span class="c1"># heart_data_accuracies &lt;- classifier(heart_training)</span>
+<span class="c1"># heart_data_accuracies</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Table 5.</strong></em> <em>Parameter values that help select a k value</em></style></p>
 <p>To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
+<figure class="align-default" id="knn-img">
+<img alt="_images/classification_model_visualization.png" src="_images/classification_model_visualization.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Accuracy kNN model as number of neighbors is increased to classify the severity of heart disease</span><a class="headerlink" href="#knn-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Setting the number of neighbours to <span class="math notranslate nohighlight">\(K\)</span> = 2 will give the highest accuracy, as seen in <a class="reference internal" href="#knn-img"><span class="std std-numref">Figure 4</span></a>. The shape of <a class="reference internal" href="#knn-img"><span class="std std-numref">Figure 4</span></a>. is not what we expected to see because of the huge drop in the accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. This means that there is a high risk of losing model accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. Choosing <span class="math notranslate nohighlight">\(K\)</span> = 1 would also work considering the accuracy; however, it is a small number and it could lead to overfitting our classifier.</p>
+<p><a class="reference internal" href="#knn-img"><span class="std std-numref">Figure 4</span></a> shows that choosing a <span class="math notranslate nohighlight">\(K\)</span> higher than two results in a drastically lower estimated accuracy. We experimented with testing the accuracy of models with higher <span class="math notranslate nohighlight">\(K\)</span> values, but they decreased the accuracy even further. For example, when we used three neighbours instead of two, the accuracy decreased by about 15%, and it continued to decrease the higher the <span class="math notranslate nohighlight">\(K\)</span> value we used. We also checked for spikes at much higher K values, but the accuracy continued to level off around 0.40. To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
+<p>After our initial analysis in <a class="reference internal" href="#knn-img"><span class="std std-numref">Figure 4</span></a> we decided to continue our analysis despite the suspicious shape of <a class="reference internal" href="#knn-img"><span class="std std-numref">Figure 4</span></a> This next step pulls optimal the <span class="math notranslate nohighlight">\(K\)</span> value based on the above cross validation to choose the appropriate number of neighbors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># K visualization</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/model_visualization.R&#39;</span><span class="p">)</span>
-<span class="nf">knn_visualization</span><span class="p">(</span><span class="n">heart_data_accuracies</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><span style="color:gray"><em><strong>Figure 4.</strong></em></style></p>
-<p>Setting the number of neighbours to <span class="math notranslate nohighlight">\(K\)</span> = 2 will give the highest accuracy, as seen in Figure 4. The shape of Figure 4. is not what we expected to see because of the huge drop in the accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. This means that there is a high risk of losing model accuracy after <span class="math notranslate nohighlight">\(K\)</span> = 2. Choosing <span class="math notranslate nohighlight">\(K\)</span> = 1 would also work considering the accuracy; however, it is a small number and it could lead to overfitting our classifier.</p>
-<p>Figure 4. shows that choosing a <span class="math notranslate nohighlight">\(K\)</span> higher than two results in a drastically lower estimated accuracy. We experimented with testing the accuracy of models with higher <span class="math notranslate nohighlight">\(K\)</span> values, but they decreased the accuracy even further. For example, when we used three neighbours instead of two, the accuracy decreased by about 15%, and it continued to decrease the higher the <span class="math notranslate nohighlight">\(K\)</span> value we used. We also checked for spikes at much higher K values, but the accuracy continued to level off around 0.40. To make this table easier to understand, we made a visualization of the mean column and the number of neighbours. The mean represents an accuracy estimate of the model when different <span class="math notranslate nohighlight">\(K\)</span> values are used. The optimal <span class="math notranslate nohighlight">\(K\)</span> value has the highest accuracy and has neighbouring <span class="math notranslate nohighlight">\(K\)</span> values of similar accuracy.</p>
-<p>After our initial analysis in Figure 4. we decided to continue our analysis despite the suspicious shape of Figure 4. This next step pulls optimal the <span class="math notranslate nohighlight">\(K\)</span> value based on the above cross validation to choose the appropriate number of neighbors.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pulling optimal K value based on above cross validation</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">best_k</span><span class="o">&lt;-</span><span class="n">heart_data_accuracies</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">arrange</span><span class="p">(</span><span class="nf">desc</span><span class="p">(</span><span class="n">mean</span><span class="p">))</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">slice</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">pull</span><span class="p">(</span><span class="n">neighbors</span><span class="p">)</span>
-<span class="c1"># best_k</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Pulling optimal K value based on above cross validation</span>
+<span class="c1"># set.seed(1)</span>
+<span class="c1"># best_k&lt;-heart_data_accuracies%&gt;%</span>
+<span class="c1">#     arrange(desc(mean))%&gt;%</span>
+<span class="c1">#     slice(2)%&gt;%</span>
+<span class="c1">#     pull(neighbors)</span>
+<span class="c1"># # best_k</span>
 </pre></div>
 </div>
 </div>
@@ -662,11 +612,11 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <p>Now that we have our optimal <span class="math notranslate nohighlight">\(K\)</span> value we continued to build our classifier and started by building a new model using <code class="docutils literal notranslate"><span class="pre">best_k</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># New classifier model using optimal K values</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">heart_data_spec_final</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nearest_neighbor</span><span class="p">(</span><span class="n">weight_func</span><span class="o">=</span><span class="s">&quot;rectangular&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">neighbors</span><span class="o">=</span><span class="n">best_k</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">set_engine</span><span class="p">(</span><span class="s">&quot;kknn&quot;</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">set_mode</span><span class="p">(</span><span class="s">&quot;classification&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # New classifier model using optimal K values</span>
+<span class="c1"># set.seed(1)</span>
+<span class="c1"># heart_data_spec_final&lt;- nearest_neighbor(weight_func=&quot;rectangular&quot;, neighbors=best_k)%&gt;%</span>
+<span class="c1">#     set_engine(&quot;kknn&quot;)%&gt;%</span>
+<span class="c1">#     set_mode(&quot;classification&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -674,12 +624,12 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <p>To finalize the classifier we now plug the recipe and model into a workflow so it can be used on other data in the future. This step fits the classifier to our training data therefore enabling it’s predictive ability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final workflow for classifier using new model.</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">heart_data_final_fit</span><span class="o">&lt;-</span><span class="nf">workflow</span><span class="p">()</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">add_recipe</span><span class="p">(</span><span class="n">heart_data_recipe</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">add_model</span><span class="p">(</span><span class="n">heart_data_spec_final</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">fit</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">heart_training</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Final workflow for classifier using new model.</span>
+<span class="c1"># set.seed(1)</span>
+<span class="c1"># heart_data_final_fit&lt;-workflow()%&gt;%</span>
+<span class="c1">#     add_recipe(heart_data_recipe)%&gt;%</span>
+<span class="c1">#     add_model(heart_data_spec_final)%&gt;%</span>
+<span class="c1">#     fit(data=heart_training)</span>
 <span class="w">    </span>
 <span class="c1">#heart_data_final_fit</span>
 </pre></div>
@@ -691,51 +641,46 @@ First using <code class="docutils literal notranslate"><span class="pre">tune()<
 <p>We pass the test set to our workflow to test the accuracy of the model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Testing our classifier using the testing set</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
-<span class="n">heart_data_summary</span><span class="o">&lt;-</span><span class="n">heart_data_final_fit</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">predict</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">metrics</span><span class="p">(</span><span class="n">truth</span><span class="o">=</span><span class="n">diagnosis_f</span><span class="p">,</span><span class="w"> </span><span class="n">estimate</span><span class="o">=</span><span class="n">.pred_class</span><span class="p">)</span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">filter</span><span class="p">(</span><span class="n">.metric</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">heart_data_summary</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Testing our classifier using the testing set</span>
+<span class="c1"># set.seed(1)</span>
+<span class="c1"># heart_data_summary&lt;-heart_data_final_fit%&gt;%</span>
+<span class="c1">#     predict(heart_testing)%&gt;%</span>
+<span class="c1">#     bind_cols(heart_testing)%&gt;%</span>
+<span class="c1">#     metrics(truth=diagnosis_f, estimate=.pred_class)%&gt;%</span>
+<span class="c1">#     filter(.metric == &#39;accuracy&#39;)</span>
+<span class="c1"># heart_data_summary</span>
 
-<span class="n">heart_data_predict</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">heart_data_final_fit</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">predict</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
-<span class="w">    </span><span class="nf">bind_cols</span><span class="p">(</span><span class="n">heart_testing</span><span class="p">)</span>
+<span class="c1"># heart_data_predict &lt;- heart_data_final_fit %&gt;%</span>
+<span class="c1">#     predict(heart_testing) %&gt;%</span>
+<span class="c1">#     bind_cols(heart_testing)</span>
 
-<span class="nf">write_csv</span><span class="p">(</span><span class="n">heart_data_predict</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;../data/modelling/predict_data.csv&#39;</span><span class="p">)</span>
+<span class="c1"># write_csv(heart_data_predict, &#39;../data/modelling/predict_data.csv&#39;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p><span style="color:gray"><em><strong>Table 6.</strong></em> <em>Model accuracy with testing set</em></style></p>
 <p>The accuracy is a reasonable number that shows that even though our predictors within our model produce a strange <span class="math notranslate nohighlight">\(K\)</span>-nearest neighbour graph, we still built a model that will diagnose patients with ~80% accuracy.</p>
-<p>We know this is a reasonable accuracy for our classifier from looking at Figure 3. As discussed in the preceding paragraph, we are looking for a classifier with higher accuracy than that of the majority classifier. In our case, the majority label made up ~30% of our dataset, so the accuracy of ~80% is more than double that of our majority label. Therefore, our classifier is reasonably good.</p>
+<p>We know this is a reasonable accuracy for our classifier from looking at <a class="reference internal" href="#class-prop-img"><span class="std std-numref">Figure 3</span></a>. As discussed in the preceding paragraph, we are looking for a classifier with higher accuracy than that of the majority classifier. In our case, the majority label made up ~30% of our dataset, so the accuracy of ~80% is more than double that of our majority label. Therefore, our classifier is reasonably good.</p>
 <p>To test the accuracy of the model we built, we also provide a confusion matrix; a table of predicted and correct labels,  using the <code class="docutils literal notranslate"><span class="pre">conf_mat</span></code> function. This enables us to easily see false positives and false negatives of diagnosis, as well as what was predicted accurately.</p>
 <p>A heatmap based on the confusion matrix was made to more easily understand what is being displayed above.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># confusion matrix heat map visualization</span>
-<span class="nf">source</span><span class="p">(</span><span class="s">&#39;../R/confusion_matrix.R&#39;</span><span class="p">)</span>
-
-<span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">heart_data_predict</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><span style="color:gray"><em><strong>Figure 5.</strong></em></style></p>
-<p>The confusion matrix (Figure 5.) shows that 22 individuals were correctly diagnosed with no presence of heart disease, 39 were correctly diagnosed with low severity of heart disease, 22 were correctly diagnosed with medium severity of heart disease, 20 were correctly diagnosed with high severity of heart disease, and 4 were correctly diagnosed with extreme severity of heart disease. Therefore, the classifier labeled <span class="math notranslate nohighlight">\(22 + 39 + 21 + 20 + 4 = 106\)</span> diagnoses correctly. This is a rather good result as the proportions of each heart disease class diagnosed correctly mirror the proportions seen in the dataset. Our classifier is therefore not favouring one diagnosis over the other.</p>
+<figure class="align-default" id="confusion-img">
+<img alt="_images/confusion_matrix.png" src="_images/confusion_matrix.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">The confusion matrix illustrates the number of correct predictions made by the kNN model to the number of incorrect predictions. The darker the color of the square the more predictions that landed in that category.</span><a class="headerlink" href="#confusion-img" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The confusion matrix (<a class="reference internal" href="#confusion-img"><span class="std std-numref">Figure 5</span></a>) shows that 22 individuals were correctly diagnosed with no presence of heart disease, 39 were correctly diagnosed with low severity of heart disease, 22 were correctly diagnosed with medium severity of heart disease, 20 were correctly diagnosed with high severity of heart disease, and 4 were correctly diagnosed with extreme severity of heart disease. Therefore, the classifier labeled <span class="math notranslate nohighlight">\(22 + 39 + 21 + 20 + 4 = 106\)</span> diagnoses correctly. This is a rather good result as the proportions of each heart disease class diagnosed correctly mirror the proportions seen in the dataset. Our classifier is therefore not favouring one diagnosis over the other.</p>
 <p>Unfortunately, the classifier also made errors and classified a total of 18 patients with a false positive, meaning the patient’s heart disease was worse than it actually was. Moreover, the classifier labelled six patients with false negatives, meaning the patients’ heart disease was actually worse than what was predicted. A discussion as to the false positive and false negative results is in the discussion section.</p>
 </section>
 </section>
 <section id="conclusion">
 <h2><a class="toc-backref" href="#id29">Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
-<p>The predictors, <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, have high accuracy and a good chance of accurately predicting a patient’s heart disease severity. However, some results indicate that these predictors may not be the best in actual practice. For instance, Figure 1. shows that these predictors do not have significant correlations with a diagnosis of severity of heart disease. Additionally, there was a significant drop-off after two neighbours in our <span class="math notranslate nohighlight">\(K\)</span> graph, proposing that our accuracy results could be due to luck. However, our confusion matrix reveals promising results.</p>
+<p>The predictors, <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">max_heart_rate</span></code>, and <code class="docutils literal notranslate"><span class="pre">rest_bp</span></code>, have high accuracy and a good chance of accurately predicting a patient’s heart disease severity. However, some results indicate that these predictors may not be the best in actual practice. For instance, <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1</span></a> shows that these predictors do not have significant correlations with a diagnosis of severity of heart disease. Additionally, there was a significant drop-off after two neighbours in our <span class="math notranslate nohighlight">\(K\)</span> graph, proposing that our accuracy results could be due to luck. However, our confusion matrix reveals promising results.</p>
 <section id="is-this-what-you-expected-to-find">
 <h3><a class="toc-backref" href="#id30">Is this what you expected to find?</a><a class="headerlink" href="#is-this-what-you-expected-to-find" title="Permalink to this headline">#</a></h3>
 <p>We expected to find that the larger the numerical value of a patient’s age and resting blood pressure and the lower the maximum heart rate, the greater at risk a person is to have worsened heart disease. We actually found that these predictors have a weak correlation with the outcome variable. However, our model still predicts heart disease severity accurately.</p>
-<p>From our confusion matrix in Figure 5., we were more likely to predict a false positive than a false negative. This is good because, with a health condition like heart disease that generates ranging severity, it is better to be given a false positive and be treated as if the disease were worse than be given a false negative and not be treated at all or to a lower care level than what is needed. A reason we see 18 false positives could be because of the predictors we chose to use in our model. We saw in Figure 1. that these predictors are not ideal because of the weak relationships they show with the severities of heart disease. This can also be said as to why we have 6 false negatives. However, considering that the accuracy of our model is good, this is a reasonable number of false negatives. These values for the false positives and false negatives also relate to our research question and conclusion that our selected predictors are primarily good at predicting the preliminary severity of a patient’s heart disease. However, a diagnosis cannot be concluded off these factors alone. Unfortunately, false negatives and false positives are given in medicine in the real world, but from actual research and examples like we were able to display in our classification, it is more likely that a patient will have a proper diagnosis than a false positive or negative.</p>
+<p>From our confusion matrix in <a class="reference internal" href="#confusion-img"><span class="std std-numref">Figure 5</span></a>, we were more likely to predict a false positive than a false negative. This is good because, with a health condition like heart disease that generates ranging severity, it is better to be given a false positive and be treated as if the disease were worse than be given a false negative and not be treated at all or to a lower care level than what is needed. A reason we see 18 false positives could be because of the predictors we chose to use in our model. We saw in <a class="reference internal" href="#boxplot-img"><span class="std std-numref">Figure 1</span></a> that these predictors are not ideal because of the weak relationships they show with the severities of heart disease. This can also be said as to why we have 6 false negatives. However, considering that the accuracy of our model is good, this is a reasonable number of false negatives. These values for the false positives and false negatives also relate to our research question and conclusion that our selected predictors are primarily good at predicting the preliminary severity of a patient’s heart disease. However, a diagnosis cannot be concluded off these factors alone. Unfortunately, false negatives and false positives are given in medicine in the real world, but from actual research and examples like we were able to display in our classification, it is more likely that a patient will have a proper diagnosis than a false positive or negative.</p>
 </section>
 <section id="what-impact-could-such-findings-have">
 <h3><a class="toc-backref" href="#id31">What impact could such findings have?</a><a class="headerlink" href="#what-impact-could-such-findings-have" title="Permalink to this headline">#</a></h3>
