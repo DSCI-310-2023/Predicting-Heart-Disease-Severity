@@ -17,37 +17,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-source('../tests/tests.R')
+heart_data <- read_csv('../data/processed/heart_data.csv', show_col_types = FALSE)
+head(heart_data)
 ------------------
 
-[1m[33mError[39m in `reporter$stop_if_needed()`:[22m
-[33m![39m Test failed
+Error in read_csv("../data/processed/heart_data.csv", show_col_types = FALSE): could not find function "read_csv"
 Traceback:
 
-1. source("../tests/tests.R")
-2. withVisible(eval(ei, envir))
-3. eval(ei, envir)
-4. eval(ei, envir)
-5. test_that("X-axis label is not the same!", {
- .     majority_classifier <- read_csv("../data/modelling/majority_classifier.csv")
- .     plot <- majority_classifier_vis_function(majority_classifier)
- .     expect_identical(plot$labels$x, "Heart disease degree of severity")
- . })
-6. (function (envir) 
- . {
- .     handlers <- get_handlers(envir)
- .     errors <- list()
- .     for (handler in handlers) {
- .         tryCatch(eval(handler$expr, handler$envir), error = function(e) {
- .             errors[[length(errors) + 1]] <<- e
- .         })
- .     }
- .     attr(envir, "withr_handlers") <- NULL
- .     for (error in errors) {
- .         stop(error)
- .     }
- . })(<environment>)
-ERROR: [1m[33mError[39m in `reporter$stop_if_needed()`:[22m
-[33m![39m Test failed
+ERROR: Error in read_csv("../data/processed/heart_data.csv", show_col_types = FALSE): could not find function "read_csv"
 
 
