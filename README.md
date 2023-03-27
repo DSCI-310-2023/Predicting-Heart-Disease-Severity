@@ -55,6 +55,13 @@ docker run --rm -p 8888:8888 \
 
 *To stop and remove the container when done collaborating run:* `docker-compose down`. 
 
+7. To get all the necessary files for the project to run, type into git bash:
+```
+make all
+```
+
+
+
 ## Dependencies:
 ---
 R version 4.2.1 & Jupyterlab 3.6.1
