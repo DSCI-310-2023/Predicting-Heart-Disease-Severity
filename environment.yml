@@ -11,5 +11,4 @@ dependencies:
   - r-caret=6.0_93
   - r-e1071=1.7_11
   - r-testthat=3.1.6
-  - r-jupyterlab=3.2.4
 prefix: /Users/Sam/miniconda3/envs/dsci310-group18
