@@ -52,6 +52,13 @@ docker run --rm -p 8888:8888 \
 4. Copy the URL that will come up that looks something like `http://127.0.0.1:8888/lab?token=2faf555049c37dd3980e06c182f614223f93b57cac264491` into your web browser. This will open Jupyter Lab in the root directory of this analysis. 
 5. Nagivate to `analysis.ipynb` in Jupyter lab and run the entire analysis. By navigating to `Kernel` and clicking `Restart Kernal and Run All Cells`. 
 6. Work within the container as you need and edit the analysis!
+```
+* To render the HTML:
+7. Type in:
+make notebooks/_build/html/analysis.html
+```
+8. Copy the local host link and paste into into a web browser.
+
 
 *To stop and remove the container when done collaborating run:* `docker-compose down`. 
 
