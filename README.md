@@ -68,7 +68,17 @@ make notebooks/_build/html/analysis.html
 ---
 R version 4.2.1 & Jupyterlab 3.6.1
 
-Additionally, all R packages and versions are listed in [`environment.yml`](environment.yml)
+|Package     |Version   |
+| ---------- |:--------:|
+|cowplot     |1.1.1     |
+|tidymodels  |0.1.4     |
+|tidyverse   |1.3.1     |
+|repr        |1.1.4     |
+|ggplot2     |3.3.6     |
+|caret       |0_93      |
+|e1071       |7_11      |
+|testthat    |3.1.6     |
+
 
 ## License Information
 
