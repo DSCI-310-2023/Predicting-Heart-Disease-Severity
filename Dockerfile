@@ -1,5 +1,8 @@
 FROM continuumio/miniconda3
 
+RUN apt-get update && \
+    apt-get install -y r-base
+    
 RUN conda install -y --quiet \
     jupyter \
     jupyterlab=3.5 \
@@ -15,10 +18,6 @@ RUN conda install -y --quiet \
     r-testthat=3.1.6 
 
 RUN pip install jupyterlab-git
-
-RUN apt-get update && \
-    apt-get install --yes \
-    git 
 
 RUN conda init bash
 
