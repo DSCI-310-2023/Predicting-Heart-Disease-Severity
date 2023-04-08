@@ -85,6 +85,7 @@ clean:
 	rm -rf data/raw/
 	rm -rf figures/
 	rm -rf data/heart_data_final_workflow.rds
+	rm -rf notebook/_build
 
 
 # build jupyter book into html
