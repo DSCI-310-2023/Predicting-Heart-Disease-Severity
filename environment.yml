@@ -10,5 +10,7 @@ dependencies:
   - r-ggplot2=3.3.6
   - r-caret=6.*
   - r-e1071=1.7_11
-  - r-testthat=3.1*
+  - r-testthat=3.1.6
+  - r-kknn=1.3.1
+
 prefix: /Users/Sam/miniconda3/envs/dsci310-group18
