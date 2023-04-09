@@ -3,7 +3,7 @@ FROM jupyter/r-notebook:notebook-6.5.3
 WORKDIR /home/jovyan/dsci-310-group-18
 
 # copies all files in repo into the container.
-COPY --chown=jovyan:jovyan . /home/jovyan/dsci-310-group-18/
+COPY . /home/jovyan/dsci-310-group-18/
 
 # reads in the environment file
 RUN conda env create --file environment.yml
