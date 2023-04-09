@@ -12,9 +12,9 @@ Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [her
 ## About
 ---
 
-We built a kNN classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients (0 being least severe and 4 being most severe). This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model should not be used to diagnose individuals directly but used as a tool to assess the possibility that the patient is or will experience heart disease. 
+We built a kNN classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients (0 being least severe and 4 being most severe). This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model should not be used to diagnose individuals directly but used as a tool to assess the possibility that the patient is, or will experience heart disease. 
 
-The data we used to build our model comes from the processed versions of data for Cleveland, Hungary, Switzerland and VA Long Beach patient information from 1988. All these data sets can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
+The data we used to build our model come from the processed versions of data for Cleveland, Hungary, Switzerland and VA Long Beach patient information from 1988. All these data sets can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
 
 ## Report
 
@@ -65,18 +65,24 @@ make notebooks/_build/html/analysis.html
 
 ## Dependencies:
 ---
-R version 4.2.1 & Jupyterlab 3.6.1
+**Software includes:**
+
+R version 4.2.3, Jupyterlab 3.6.3, GNU Make 4.3 & JupyterBook 0.13.2
+
+**R language packages include:**
 
 |Package     |Version   |
 | ---------- |:--------:|
 |cowplot     |1.1.1     |
-|tidymodels  |0.1.4     |
-|tidyverse   |1.3.1     |
-|repr        |1.1.4     |
+|tidymodels  |1.0.0     |
+|tidyverse   |1.3.2     |
+|repr        |1.1.6     |
 |ggplot2     |3.3.6     |
-|caret       |0_93      |
-|e1071       |7_11      |
-|testthat    |3.1.6     |
+|caret       |6.0.94    |
+|e1071       |1.7.13    |
+|testthat    |3.1.7     |
+|kknn | 1.3.1|
+
 
 
 ## License Information
