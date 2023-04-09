@@ -25,8 +25,10 @@ library(testthat)
 web_data <- function(place, url){
   col_names <- c('age', 'sex', 'chest_pain', 'rest_bp', 'cholestoral_mmHg', 'fasting_bs', 
                  'rest_ECG', 'max_heart_rate', 'exercise', 'ST_dep', 'slope', 'major_vessels', 'thal', 'diagnosis')
-  data <- read_csv(url, col_names = col_names, show_col_types = FALSE) %>%
-    na_if('?') %>%
+  data <- read_csv(url, col_names = col_names, show_col_types = FALSE)
+    idx <- data == "?"
+    is.na(data) <- idx
+    data_fixed <- data %>%
     mutate(place = place) %>%
     select(-ST_dep, -slope) %>%
     select(place, everything())
