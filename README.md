@@ -31,7 +31,7 @@ The full HTML report can be found [here](notebooks/_build/html/analysis.html)
 
 There are three ways to run the report on your local computer. You can use a dockerhub image, build the image locally or manually download the dependencies onto your local machine.
 
-To follow instructions using the dokcerhub image or to build the image locally, you first need to download [Docker](https://www.docker.com/get-started/). Once you have done this you can follow the instructions below:
+To follow instructions using the dockerhub image or to build the image locally, you first need to download [Docker](https://www.docker.com/get-started/). Once you have done this you can follow the instructions below:
 
 ---
 ### Run Using DockerHub Image
@@ -74,6 +74,8 @@ docker run -p 8888:8888 dsci-310-group-18:latest
 
 From there you can follow steps 5-7 of the [docker image instructions](#run-using-dockerhub-image).
 
+*If you wish to re-run the above steps run `make clean` in the jupyter terminal first to clear any files generated from the above steps.*
+
 ### Run without Docker
 
 1. Clone this GitHub repository onto your local computer using : `git clone <past-HTTPS/SSH-here>` into your terminal. 
@@ -84,6 +86,8 @@ From there you can follow steps 5-7 of the [docker image instructions](#run-usin
 make notebooks/_build/html/analysis.html
 ```
 5. Copy the link generated into your web browser to view the complete report.
+
+*To remove the generated files run `make clean` to restart with a 'clean' repository.*
 
 ## Dependencies:
 ---
