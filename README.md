@@ -1,20 +1,23 @@
 ### dsci-310-group-18
+---
 
 # Evaluating accuracy of predetermined variables to predict severity of heart disease in patients.
----
 
 ### Authors: Daniel Lee, Eric Leung, Sam Thorne
 
 **Adapted from analysis competed by: Emerson, Crick, Allie, Janowcz, Ziva Subelji and Sam Thorne**
 
-Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [here](PERMISSIONS/analysis-permission.jpeg)
+*Permission to adapt DSCI100 analysis for the purposes of DSCI310 can be see [here](PERMISSIONS/analysis-permission.jpeg)*.
+
 
 ## About
 ---
 
-We built a kNN classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients (0 being least severe and 4 being most severe). This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model should not be used to diagnose individuals directly but used as a tool to assess the possibility that the patient is, or will experience heart disease. 
+We built a $kNN$ classification model to determine if age, maximum heart rate, and resting blood pressure are good at predicting the severity of heart disease in a patient. We found that together these variables generate a high accuracy classification model of the severity of heart disease in patients (0 being least severe and 4 being most severe). 
 
-The data we used to build our model come from the processed versions of data for Cleveland, Hungary, Switzerland and VA Long Beach patient information from 1988. All these data sets can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+Disease)
+This model could potentially aid in medical diagnosies for patients with heart conditions based on factors that are easy to measure. The information this model provides can be used as a precaution to spread public awareness of heart disease risk based on your age, blood pressure and heart rate. This model should not be used to diagnose individuals directly but used as a tool to assess the possibility that the patient is, or will experience heart disease. 
+
+The data we used to build our model came from the processed versions of data for Cleveland, Hungary, Switzerland and VA Long Beach patient information from 1988. All these data sets can be found [here](https://archive.ics.uci.edu/ml/datasets/Heart+Disease).
 
 ## Report
 
@@ -24,44 +27,63 @@ The full report can be found [here](analysis.ipynb)
 
 The full HTML report can be found [here](notebooks/_build/html/analysis.html)
 
-## Usage
+# Usage
+
+There are three ways to run the report on your local computer. You can use a dockerhub image, build the image locally or manually download the dependencies onto your local machine.
+
+To follow instructions using the dokcerhub image or to build the image locally, you first need to download [Docker](https://www.docker.com/get-started/). Once you have done this you can follow the instructions below:
+
+---
+### Run Using DockerHub Image
+
+1. Clone this GitHub repository onto your local computer using: `git clone <paste-HTTPS/SSH-here>` in your terminal.
+2. Navigate to the root of this project directory using `cd dsci-310-group-18`.
+3. Run the following: (*you might be prompted to login to docker to move on to the next step*)
+
+```
+docker pull leuneri/dsci-310-group-18:latest
+```
+4. This step should automatically open jupyter lab on your computer inside the project directory (*or prompt you to copy a link to open jupyter lab*). Our report can be found as an .ipynb inside `notebooks/` along with any code within the `R/` directory. To open jupyter run the following:
+```
+docker run -p 8888:8888 leuneri/dsci-310-group-18:latest
+```
+
+5. Navigate to the terminal within jupyter lab. 
+6. Run the following within the jupyter terminal: 
+```
+make notebooks/_build/html/analysis.html
+```
+7. Copy the link generated inside your web browser and you will be able to view the full report as a .html file.
+
+*If you wish to re-run the above steps run `make clean` in the jupyter terminal first to clear any files generated from the above steps.*
 
 ---
 
-A Docker container has been created to make this computation reproducible. 
+### Run by Building Docker Image Locally
 
-**For those that wish to reproduce the analysis without collaborating or editing the project:**
-1. Clone this GitHub repository onto your local computer.
-2. Make sure the terminal is in the root of this project you just cloned.
-3. Run the following:
+1. Clone this GitHub repository onto your local computer using: `git clone <paste-HTTPS/SSH-here>` in your terminal.
+2. Navigate to the root of this project directory using `cd dsci-310-group-18`.
+3. Run the following: (*THIS STEP TAKES ~25 MINUTES TO RUN SO KEEP THIS IN MIND BEFORE COPYING INTO YOUR TERMINAL*)
+```
+docker build --tag dsci-310-group-18:latest .
+```
+4. Once that has loaded you can run (*This will open jupyter lab*):
+```
+docker run -p 8888:8888 dsci-310-group-18:latest
+```
 
-```
-docker run --rm -p 8888:8888 \
-    -v /$(pwd):/home/joyvan/dsci-310-group-18 \
-    leuneri/dsci-310-group-18:latest \
-    jupyter nbconvert --to notebook --execute dsci-310-group-18/analysis.ipynb
-```
+From there you can follow steps 5-7 of the [docker image instructions](#run-using-dockerhub-image).
 
-**For those that wish to edit and interactively run the analysis:**
-1. Clone this GitHub repository onto your local computer. 
-2. Navigate to the root of the project directory.
-3. Run the following:
+### Run without Docker
+
+1. Clone this GitHub repository onto your local computer using : `git clone <past-HTTPS/SSH-here>` into your terminal. 
+2. Navigate to the root of this project directory using `cd dsci-310-group-18`.
+3. Install all the dependencies and softwards listed [below](#dependencies)
+4. Run the following in your terminal:
 ```
-docker run --rm -p 8888:8888 \
-    -v /$(pwd):/home/joyvan/dsci-310-group-18 \
-    leuneri/dsci-310-group-18:latest
-```
-4. Copy the URL that will come up that looks something like `http://127.0.0.1:8888/lab?token=2faf555049c37dd3980e06c182f614223f93b57cac264491` into your web browser. This will open Jupyter Lab in the root directory of this analysis. 
-5. Work within the container as you need and edit the analysis!
-```
-* To render the HTML:
-6. Type in:
 make notebooks/_build/html/analysis.html
 ```
-7. Copy the local host link and paste into into a web browser.
-
-
-*To stop and remove the container when done collaborating run:* `docker-compose down`. 
+5. Copy the link generated into your web browser to view the complete report.
 
 ## Dependencies:
 ---
