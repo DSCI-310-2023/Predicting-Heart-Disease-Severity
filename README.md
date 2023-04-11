@@ -76,6 +76,8 @@ From there you can follow steps 5-7 of the [docker image instructions](#run-usin
 
 *If you wish to re-run the above steps run `make clean` in the jupyter terminal first to clear any files generated from the above steps.*
 
+---
+
 ### Run without Docker
 
 1. Clone this GitHub repository onto your local computer using : `git clone <past-HTTPS/SSH-here>` into your terminal. 
