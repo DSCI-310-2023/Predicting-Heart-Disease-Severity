@@ -1,3 +1,4 @@
+library(group18package)
 # takes in the data generated from 02 script
 
 # produces 2 csv files inside data/modelling.

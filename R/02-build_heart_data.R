@@ -1,3 +1,4 @@
+library(group18package)
 # this script takes in the file generated in 01-loading
 
 # it produces a csv file as 'data/processes/heart_data.csv'

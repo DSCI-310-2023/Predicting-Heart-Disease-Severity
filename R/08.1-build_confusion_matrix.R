@@ -1,3 +1,4 @@
+library(group18package)
 # This script visualizes a confusion matrix
 # takes in data from 08.0 script 
 

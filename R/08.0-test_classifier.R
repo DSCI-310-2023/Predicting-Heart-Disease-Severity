@@ -1,3 +1,4 @@
+library(group18package)
 # This script tests our classifier using the testing set
 # takes in data from 07.2 script (rds file)
 

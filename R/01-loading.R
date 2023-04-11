@@ -11,6 +11,7 @@ library(cowplot)
 library(ggplot2)
 library(caret)
 library(e1071)
+library(group18package)
 options(repr.matrix.max.rows = 6)
 set.seed(1)
 

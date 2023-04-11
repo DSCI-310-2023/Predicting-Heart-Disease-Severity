@@ -1,3 +1,4 @@
+library(group18package)
 # This script build the final workflow for classifier
 # takes in data from 07.0 script
 

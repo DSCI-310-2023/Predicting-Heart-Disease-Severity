@@ -1,3 +1,4 @@
+library(group18package)
 # takes in the data generated from 06.0 script
 
 # produces a png file of bar chart visualization

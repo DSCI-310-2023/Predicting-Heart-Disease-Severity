@@ -1,3 +1,4 @@
+library(group18package)
 # takes in the data generated from 05 script
 
 # produces major classifier results as csv file

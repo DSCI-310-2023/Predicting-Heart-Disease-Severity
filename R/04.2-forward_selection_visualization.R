@@ -1,3 +1,4 @@
+library(group18package)
 # takes in the data generated from 04.1 script
 
 # produces a png file of line chart visualization

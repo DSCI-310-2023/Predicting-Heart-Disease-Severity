@@ -1,3 +1,4 @@
+library(group18package)
 # takes in the data generated from 04.0 script
 
 # produces forward selection results as csv file
