@@ -5,8 +5,6 @@ library(group18package)
 # produces a knn visualization as a png
 library(tidyverse)
 
-source('R/model_visualization.R')
-
 # Reading in data from 07.0
 data <- read_csv("data/modelling/heart_data_accuracies.csv")
 
