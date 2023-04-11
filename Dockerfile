@@ -20,4 +20,7 @@ RUN conda install -c conda-forge \
 RUN conda install -c conda-forge jupyter-book  
 RUN conda install make   
 
+# adding our personal package
+RUN Rscript -e "devtools::install_github('leuneri/dsci-310-group-18-pkg')"
+
 RUN echo "conda activate dsci310-group18" > ~/.bashrc
