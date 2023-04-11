@@ -25,7 +25,7 @@ The data we used to build our model came from the processed versions of data for
 
 The full report can be found [here](notebooks/analysis.ipynb)
 
-The full HTML report can be found [here](https://dokkaebi10.github.io/dsci-310-group-18/analysis.html)
+The full HTML report can be found [here](https://DSCI-310.github.io/dsci-310-group-18/analysis.html)
 
 # Usage
 
