@@ -4,9 +4,6 @@ library(group18package)
 # produces a png file of boxplot visualization
 # will be saved to '../figures/boxplot.png'
 
-# uses function grid_boxplot in '../R/boxplots.R'
-source('R/boxplots.R')
-
 # file containing clean_csv function
 source('R/joining_data.R')
 
