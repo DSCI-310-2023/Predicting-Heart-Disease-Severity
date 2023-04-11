@@ -108,7 +108,7 @@ R version 4.2.3, Jupyterlab 3.6.3, GNU Make 4.3 & JupyterBook 0.13.2
 |e1071       |1.7.13    |
 |testthat    |3.1.7     |
 |kknn | 1.3.1|
-
+|group18package|0.0.0.9000|
 
 
 ## License Information
