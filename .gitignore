@@ -69,6 +69,3 @@ Footer navigation
 */.ipynb_checkpoints/*
 
 .virtual_documents
-
-# ignore _build
-notebooks/_build/*
