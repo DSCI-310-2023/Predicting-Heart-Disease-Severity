@@ -25,7 +25,7 @@ The data we used to build our model came from the processed versions of data for
 
 The full report can be found [here](analysis.ipynb)
 
-The full HTML report can be found [here](notebooks/_build/html/analysis.html)
+The full HTML report can be found [here](https://dokkaebi10.github.io/dsci-310-group-18/analysis.html)
 
 # Usage
 
@@ -112,6 +112,7 @@ R version 4.2.3, Jupyterlab 3.6.3, GNU Make 4.3 & JupyterBook 0.13.2
 |kknn | 1.3.1|
 |group18package|0.0.0.9000|
 
+group18package can be found [here](https://github.com/leuneri/dsci-310-group-18-pkg)
 
 ## License Information
 
